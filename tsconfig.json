@@ -1,10 +1,32 @@
 // prettier-ignore
 {
-  "extends": "@tsconfig/react-native/tsconfig.json",     /* Recommended React Native TSConfig base */
+  "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
-    /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "baseUrl": "./",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@components": ["src/components/index"],
+      "@constants": ["src/constants/index"],
+      "@hooks": ["src/hooks/index"],
+      "@models": ["src/models/index"],
+      "@screens/*": ["src/screens/*"],
+      "@services": ["src/services/index"],
+      "@store/*": ["src/store/*"],
+    },
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": ["node"],
+    "skipLibCheck": true
   }
 }
