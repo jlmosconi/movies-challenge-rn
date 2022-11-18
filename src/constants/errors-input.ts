@@ -6,6 +6,8 @@ export const GENERIC_INPUT_MESSAGES: Record<GenericErrors, string> = {
   [GenericErrors.MIN]: 'Debes ingresar al menos {min} caracteres',
   [GenericErrors.MAX]: 'Debes ingresar como máximo {max} caracteres',
   [GenericErrors.EMAIL_PATTERN]: 'Email inválido.',
+  [GenericErrors.PASSWORD_PATTERN]:
+    'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un caracter especial.',
 };
 
 export const GENERIC_ERRORS: Array<{
@@ -31,5 +33,9 @@ export const GENERIC_ERRORS: Array<{
   {
     tipo: InputValidators.MAX,
     mensaje: GENERIC_INPUT_MESSAGES.max,
+  },
+  {
+    tipo: InputValidators.EMAIL_PATTERN,
+    mensaje: GENERIC_INPUT_MESSAGES.emailPattern,
   },
 ];

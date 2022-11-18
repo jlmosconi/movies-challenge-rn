@@ -6,6 +6,9 @@ export const enum InputValidators {
   MIN_LENGTH = 'minLength',
   PATTERN = 'pattern',
   MATCHES = 'matches',
+  EMAIL_PATTERN = 'emailPattern',
+  PASSWORD = 'password',
+  PASSWORD_PATTERN = 'passwordPattern',
 }
 
 export const enum GenericErrors {
@@ -14,6 +17,7 @@ export const enum GenericErrors {
   MIN = 'min',
   MAX = 'max',
   EMAIL_PATTERN = 'emailPattern',
+  PASSWORD_PATTERN = 'passwordPattern',
 }
 
 export type InputValidator = `${InputValidators}`;
