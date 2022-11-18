@@ -33,7 +33,7 @@ export const InputErrorMessage: FC<InputErrorMessageProps> = ({errors, errorsMes
 const styles = StyleSheet.create({
   containerStyle: {
     width: '100%',
-    marginBottom: 8,
+    marginTop: 4,
     color: COLORS.danger,
     fontSize: 12,
   },

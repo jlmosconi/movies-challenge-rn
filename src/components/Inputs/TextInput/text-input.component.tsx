@@ -4,6 +4,7 @@ import {InputValidator} from '@models';
 import {FC, useState} from 'react';
 import {Control, Controller, FieldError} from 'react-hook-form';
 import {KeyboardType, StyleSheet, TextInput, View} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface InputTextProps {
   label: string;
@@ -60,13 +61,13 @@ export const InputText: FC<InputTextProps> = ({
             control={control}
             name={name}
           />
-          {/* {isPassword ? (
+          {isPassword ? (
             <Icon
               onPress={() => setHidePassword(!hidePassword)}
               name={hidePassword ? 'eye-outline' : 'eye-off-outline'}
               style={{color: COLORS.dark, fontSize: 22}}
             />
-          ) : null} */}
+          ) : null}
         </View>
 
         <InputErrorMessage errors={errors} errorsMessages={errorsMessages} />
