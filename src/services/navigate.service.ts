@@ -13,6 +13,18 @@ class NavigateService {
     navigationRef?.current?.navigate(url as never, params as never);
   }
 
+  public navigateRoot(url: string, params = {}): void {
+    navigateService.navigate(url, params);
+    navigateService.reset(url);
+  }
+
+  private reset(routeName: string): void {
+    navigationRef?.current?.reset({
+      index: 0,
+      routes: [{name: routeName}],
+    });
+  }
+
   public goBack(): void {
     navigationRef?.current?.goBack();
   }

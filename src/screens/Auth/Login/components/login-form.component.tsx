@@ -1,18 +1,14 @@
 import {Button, InputText} from '@components';
+import {PATTERNS_GLOBAL} from '@constants';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {LoginProps} from '@models';
 import {FC} from 'react';
 import {useForm} from 'react-hook-form';
 import * as yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {PATTERNS_GLOBAL} from '@constants';
 
 interface LoginFormProps {
   loading: boolean;
-  onSubmit: (formData: LoginFormInput) => void;
-}
-
-export interface LoginFormInput {
-  email: string;
-  password: string;
+  onSubmit: (formData: LoginProps) => void;
 }
 
 const schema = yup.object().shape({
@@ -28,15 +24,29 @@ export const LoginForm: FC<LoginFormProps> = ({loading, onSubmit}) => {
     handleSubmit,
     control,
     formState: {errors, isValid},
-  } = useForm<LoginFormInput>({
+  } = useForm<LoginProps>({
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
 
   return (
     <>
-      <InputText control={control} placeholder="Email" name={'email'} keyboardType={'email-address'} errors={errors.email} />
-      <InputText control={control} placeholder="Contraseña" name={'password'} errors={errors.password} />
+      <InputText
+        label="Email"
+        control={control}
+        placeholder="Ingresa tu Email"
+        name={'email'}
+        keyboardType={'email-address'}
+        errors={errors.email}
+      />
+      <InputText
+        label="Contraseña"
+        control={control}
+        placeholder="Ingresa tu Contraseña"
+        name={'password'}
+        isPassword={true}
+        errors={errors.password}
+      />
       <Button title="Ingresar" loading={loading} disabled={!isValid} onPress={handleSubmit(formData => onSubmit(formData))} />
     </>
   );
