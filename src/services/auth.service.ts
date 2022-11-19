@@ -1,4 +1,4 @@
-import {UserAdapter} from '@adapters';
+import {UserAdapter} from '../adapters';
 import {LoginProps, User} from '@models';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
