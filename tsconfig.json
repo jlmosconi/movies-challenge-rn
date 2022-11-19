@@ -12,6 +12,7 @@
       "@screens/*": ["src/screens/*"],
       "@services": ["src/services/index"],
       "@store/*": ["src/store/*"],
+      "@utils": ["src/utils/index"],
     },
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

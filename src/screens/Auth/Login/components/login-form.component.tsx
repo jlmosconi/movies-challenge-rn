@@ -36,6 +36,7 @@ export const LoginForm: FC<LoginFormProps> = ({loading, onSubmit}) => {
         control={control}
         placeholder="Ingresa tu Email"
         name={'email'}
+        iconName={'email-outline'}
         keyboardType={'email-address'}
         errors={errors.email}
       />
@@ -44,6 +45,7 @@ export const LoginForm: FC<LoginFormProps> = ({loading, onSubmit}) => {
         control={control}
         placeholder="Ingresa tu Contraseña"
         name={'password'}
+        iconName={'lock-outline'}
         isPassword={true}
         errors={errors.password}
       />

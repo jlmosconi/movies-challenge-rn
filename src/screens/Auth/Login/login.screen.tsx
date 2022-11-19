@@ -16,7 +16,7 @@ export const LoginScreen: FC = () => {
 
   return (
     <SafeAreaView>
-      <StatusBar barStyle="dark-content" />
+      {/* <StatusBar barStyle="dark-content" /> */}
       <View style={style.container}>
         {/* <AppText>Login</AppText> */}
         <LoginForm onSubmit={onSubmit} loading={loading} />

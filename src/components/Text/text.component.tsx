@@ -12,7 +12,7 @@ export const AppText: FC<AppTextProps> = ({children, style, textType = 'regular'
 
 const styles = StyleSheet.create({
   color: {
-    color: COLORS.dark,
+    color: COLORS.white,
   },
   regular: {
     fontFamily: FONTS.regular,

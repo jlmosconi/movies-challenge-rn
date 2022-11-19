@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 16,
     height: 55,
-    borderRadius: 16,
+    borderRadius: 12,
   },
   shadowProp: {
     shadowColor: '#1069e3',

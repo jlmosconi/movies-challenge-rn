@@ -1,3 +1,4 @@
+import {COLORS} from '@constants';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginScreen} from '@screens/Auth/Login/login.screen';
@@ -13,12 +14,17 @@ const App: FC = () => {
   return (
     <Provider store={store}>
       <NavigationContainer ref={navigationRef}>
+        {/* <StatusBar barStyle="light-content" translucent={true} /> */}
         <Stack.Navigator
           initialRouteName="Login"
           screenOptions={{
             headerShown: true,
             headerTransparent: true,
             headerShadowVisible: false,
+            statusBarStyle: 'inverted',
+            contentStyle: {
+              backgroundColor: COLORS.dark,
+            },
           }}>
           <Stack.Screen
             name="Login"
