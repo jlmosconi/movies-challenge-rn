@@ -1,5 +1,6 @@
 import {ROUTE_NAMES} from '@constants';
 import {authService, navigateService} from '@services';
+import {Alert} from 'react-native';
 import {combineEpics, Epic} from 'redux-observable';
 import {from, of, tap} from 'rxjs';
 import {catchError, exhaustMap, filter, first, ignoreElements, map} from 'rxjs/operators';
@@ -29,7 +30,7 @@ const loginFailEpic: Epic = action$ =>
     filter(loginFail.match),
     map(({payload: {errorCode}}) => authService.getErrorMessage(errorCode)),
     tap(errorMessage => {
-      console.warn(errorMessage);
+      Alert.alert('Error', errorMessage);
     }),
     ignoreElements(),
   );
