@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "505842791905",
+    "project_id": "movies-challenge-rn",
+    "storage_bucket": "movies-challenge-rn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505842791905:android:4132b1689233c1258d8ea0",
+        "android_client_info": {
+          "package_name": "com.movieschallengern"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505842791905-fqtr2cb07inje8gakb163fod5s49j3je.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrS9vztba-QiXD9q9rt5r-wt8D89gmA7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505842791905-fqtr2cb07inje8gakb163fod5s49j3je.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "505842791905-qg28rhj0v9banbef04gpr084viv9u5a8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Anterux"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
