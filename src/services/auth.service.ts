@@ -44,9 +44,9 @@ class AuthService {
       case 'auth/user-disabled':
         return 'Usuario deshabilitado';
       case 'auth/user-not-found':
-        return 'Usuario no encontrado';
+        return 'Usuario o Contraseña incorrecta';
       case 'auth/wrong-password':
-        return 'Contraseña incorrecta';
+        return 'Usuario o Contraseña incorrecta';
       case 'auth/invalid-email':
         return 'Correo electrónico inválido';
       case 'auth/email-already-in-use':
@@ -55,6 +55,8 @@ class AuthService {
         return 'Operación no permitida';
       case 'auth/weak-password':
         return 'Contraseña débil';
+      case 'auth/too-many-requests':
+        return 'Demasiados intentos, intente más tarde';
       default:
         return 'Something went wrong';
     }
