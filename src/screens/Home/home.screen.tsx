@@ -7,10 +7,14 @@ import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 export const HomeScreen: FC = () => {
   const dispatch = useAppDispatch();
+  const getMovies = () => {
+    console.log('getMovies');
+  };
   return (
     <SafeAreaView>
       <View style={style.container}>
         <AppText>Home Screen</AppText>
+        <Button title="Get movies" onPress={() => getMovies()} />
         <Button title="Logout" onPress={() => dispatch(logout())} />
       </View>
     </SafeAreaView>

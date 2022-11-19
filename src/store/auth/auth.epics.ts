@@ -1,8 +1,9 @@
-import {ROUTE_NAMES, STORAGE} from '@constants';
+import {ROUTE_NAMES} from '@constants';
 import {authService, localStorageService, navigateService, toastService} from '@services';
+import {getUserInRealtime, setUserData} from '@store/user/user.actions';
 import {combineEpics, Epic} from 'redux-observable';
-import {from, of, tap} from 'rxjs';
-import {catchError, exhaustMap, filter, first, ignoreElements, map, switchMap} from 'rxjs/operators';
+import {from, merge, of, tap} from 'rxjs';
+import {catchError, exhaustMap, filter, first, ignoreElements, map, mergeMap, switchMap} from 'rxjs/operators';
 import {login, loginFail, loginSuccess, logout} from './auth.actions';
 
 const loginEpic: Epic = action$ =>
@@ -20,10 +21,8 @@ const loginEpic: Epic = action$ =>
 const loginSuccessEpic: Epic = action$ =>
   action$.pipe(
     filter(loginSuccess.match),
-    switchMap(({payload}) =>
-      from(localStorageService.setItem(STORAGE.USER, payload)).pipe(tap(() => navigateService.navigate(ROUTE_NAMES.home))),
-    ),
-    ignoreElements(),
+    tap(() => navigateService.navigateRoot(ROUTE_NAMES.home)),
+    mergeMap(({payload: user}) => merge(of(setUserData(user)), of(getUserInRealtime()))),
   );
 
 const loginFailEpic: Epic = action$ =>

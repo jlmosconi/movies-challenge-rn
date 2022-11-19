@@ -39,7 +39,7 @@ const App: FC = () => {
               name="Home"
               component={HomeScreen}
               options={{
-                title: 'Home',
+                title: '',
                 // headerLeft: () => <BackButton />,
               }}
             />

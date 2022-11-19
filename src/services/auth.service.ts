@@ -20,7 +20,11 @@ class AuthService {
   };
 
   public getIdtoken = async (): Promise<string> => {
-    return (await auth().currentUser?.getIdToken()) || '';
+    return (await this.getCurrentUser())?.getIdToken() || '';
+  };
+
+  public isLogedIn = async (): Promise<boolean> => {
+    return (await this.getCurrentUser()) !== null;
   };
 
   public getErrorMessage = (errorCode: string): string => {
