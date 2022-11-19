@@ -1,5 +1,6 @@
-import {LoginProps} from '@models';
-import auth from '@react-native-firebase/auth';
+import {UserAdapter} from '@adapters';
+import {LoginProps, User} from '@models';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 class AuthService {
   private static instance: AuthService;
@@ -10,17 +11,16 @@ class AuthService {
     return AuthService.instance;
   }
 
-  public login = async ({email, password}: LoginProps): Promise<string> => {
-    // await this.setLanguageCode();
-    // const {verificationId} = await FirebaseAuthentication.signInWithPhoneNumber({
-    //   phoneNumber,
-    // });
+  public login = async ({email, password}: LoginProps): Promise<User> => {
+    return UserAdapter((await auth().signInWithEmailAndPassword(email, password)).user);
+  };
 
-    // return verificationId;
-    console.log(email, password);
-    const loginData = await auth().signInWithEmailAndPassword(email, password);
+  public getCurrentUser = async (): Promise<FirebaseAuthTypes.User | null> => {
+    return await auth().currentUser;
+  };
 
-    return loginData.user.uid;
+  public getIdtoken = async (): Promise<string> => {
+    return (await auth().currentUser?.getIdToken()) || '';
   };
 
   public getErrorMessage = (errorCode: string): string => {
