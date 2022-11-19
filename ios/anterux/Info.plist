@@ -50,13 +50,13 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Inter-Bold.ttf</string>
 		<string>Inter-Regular.ttf</string>
-		<string>MaterialIcons.ttf</string>
 		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
 	</array>
 </dict>
 </plist>

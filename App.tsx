@@ -14,7 +14,6 @@ const App: FC = () => {
   return (
     <Provider store={store}>
       <NavigationContainer ref={navigationRef}>
-        {/* <StatusBar barStyle="light-content" translucent={true} /> */}
         <Stack.Navigator
           initialRouteName="Login"
           screenOptions={{
