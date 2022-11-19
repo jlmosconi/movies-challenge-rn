@@ -5,7 +5,7 @@ export const COLORS = {
   primary: '#2196F3',
   success: '#2dd36f',
   warning: '#ffc409',
-  danger: '#eb445a',
+  danger: hex2rgba('#eb445a', 0.8),
   dark: '#121212',
   darkLight: hex2rgba('#343434', 0.7),
   medium: '#999',

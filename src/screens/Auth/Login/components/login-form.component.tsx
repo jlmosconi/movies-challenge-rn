@@ -4,6 +4,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {LoginProps} from '@models';
 import {FC} from 'react';
 import {useForm} from 'react-hook-form';
+import {View, StyleSheet} from 'react-native';
 import * as yup from 'yup';
 
 interface LoginFormProps {
@@ -49,7 +50,15 @@ export const LoginForm: FC<LoginFormProps> = ({loading, onSubmit}) => {
         isPassword={true}
         errors={errors.password}
       />
-      <Button title="Ingresar" loading={loading} disabled={!isValid} onPress={handleSubmit(formData => onSubmit(formData))} />
+      <View style={styles.buttonWrapper}>
+        <Button title="Ingresar" loading={loading} disabled={!isValid} onPress={handleSubmit(formData => onSubmit(formData))} />
+      </View>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonWrapper: {
+    marginTop: 24,
+  },
+});

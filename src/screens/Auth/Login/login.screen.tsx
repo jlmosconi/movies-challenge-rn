@@ -1,9 +1,10 @@
-import {safeAreaSpace} from '@constants';
+import {AppText} from '@components';
+import {COLORS} from '@constants';
 import {useAppDispatch, useAppSelector} from '@hooks';
 import {LoginProps} from '@models';
 import {login} from '@store/auth/auth.actions';
 import {FC} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {Dimensions, SafeAreaView, StyleSheet, View} from 'react-native';
 import {LoginForm} from './components/login-form.component';
 
 export const LoginScreen: FC = () => {
@@ -16,9 +17,13 @@ export const LoginScreen: FC = () => {
 
   return (
     <SafeAreaView>
-      {/* <StatusBar barStyle="dark-content" /> */}
       <View style={style.container}>
-        {/* <AppText>Login</AppText> */}
+        <AppText style={style.title} textType="bold">
+          ANTERUX
+        </AppText>
+        <AppText style={style.loginText} textType="bold">
+          Ingresar
+        </AppText>
         <LoginForm onSubmit={onSubmit} loading={loading} />
       </View>
     </SafeAreaView>
@@ -27,7 +32,18 @@ export const LoginScreen: FC = () => {
 
 const style = StyleSheet.create({
   container: {
-    paddingTop: safeAreaSpace,
     paddingHorizontal: 20,
+  },
+  title: {
+    fontSize: Dimensions.get('window').width * 0.12,
+    letterSpacing: 2,
+    color: COLORS.primary,
+    textAlign: 'center',
+    marginTop: 16,
+    marginBottom: 50,
+  },
+  loginText: {
+    fontSize: 26,
+    marginBottom: 16,
   },
 });
