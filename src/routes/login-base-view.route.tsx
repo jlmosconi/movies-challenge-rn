@@ -3,7 +3,7 @@ import {applyGuards} from '@utils';
 import {FC, useCallback, useEffect, useState} from 'react';
 
 interface RouteBasedViewProps {
-  guards: () => Promise<boolean>[];
+  guards: any; // TODO: revisar
   component: FC;
 }
 
