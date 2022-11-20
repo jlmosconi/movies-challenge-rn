@@ -44,7 +44,7 @@ const App: FC = () => {
               }}
             /> */}
             <Stack.Screen options={{title: ''}} name={ROUTE_NAMES.home}>
-              {_ => <LoginBasedView guards={[ActiveLoginGuard]} component={HomeScreen} />}
+              {_ => <LoginBasedView guards={[() => ActiveLoginGuard]} component={HomeScreen} />}
             </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>

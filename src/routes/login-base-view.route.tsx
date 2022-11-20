@@ -1,19 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
-import {FC, useCallback, useEffect, useState} from 'react';
 import {applyGuards} from '@utils';
-// import {LoadingComponent} from './loading.component';
-import {StyleSheet, View} from 'react-native';
-import {AppText} from '@components';
+import {FC, useCallback, useEffect, useState} from 'react';
 
 interface RouteBasedViewProps {
-  guards: Promise<boolean>[];
+  guards: () => Promise<boolean>[];
   component: FC;
 }
 
 export const LoginBasedView = ({component, guards}: RouteBasedViewProps) => {
-  // TODO: pasar llamadas a HOOK
   const navigation = useNavigation();
-  const [rba, setRba] = useState(false);
+  const [, setRba] = useState(false);
 
   const getGuards = useCallback(
     async (isMounted: boolean) => {
@@ -41,19 +37,26 @@ export const LoginBasedView = ({component, guards}: RouteBasedViewProps) => {
     };
   }, [getGuards, navigation]);
 
-  if (!rba) {
-    return <AppText>Loading...</AppText>;
-  }
-
-  return <>{component({navigation})}</>;
+  return (
+    <>
+      {/* {!rba ? (
+        <View style={styles.loader}>
+          <AppText>Loading...</AppText>
+        </View>
+      ) : (
+        component({navigation})
+      )} */}
+      {component({navigation})}
+    </>
+  );
 };
 
-const styles = StyleSheet.create({
-  loader: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-  },
-});
+// const styles = StyleSheet.create({
+//   loader: {
+//     flexDirection: 'row',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     width: '100%',
+//     height: '100%',
+//   },
+// });
