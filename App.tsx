@@ -1,14 +1,15 @@
 import {ToastCustom} from '@components';
-import {COLORS} from '@constants';
+import {COLORS, ROUTE_NAMES} from '@constants';
+import {ActiveLoginGuard} from '@guards';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {LoginBasedView} from '@routes';
 import {LoginScreen} from '@screens/Auth/Login/login.screen';
 import {HomeScreen} from '@screens/Home/home.screen';
 import {navigationRef} from '@services';
 import {store} from '@store/index';
 import {FC} from 'react';
 import {Provider} from 'react-redux';
-// import Toast from 'react-native-toast-message';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +19,7 @@ const App: FC = () => {
       <Provider store={store}>
         <NavigationContainer ref={navigationRef}>
           <Stack.Navigator
-            initialRouteName="Login"
+            initialRouteName={ROUTE_NAMES.home}
             screenOptions={{
               headerShown: true,
               headerTransparent: true,
@@ -29,20 +30,22 @@ const App: FC = () => {
               },
             }}>
             <Stack.Screen
-              name="Login"
+              name={ROUTE_NAMES.login}
               component={LoginScreen}
               options={{
                 title: '',
               }}
             />
-            <Stack.Screen
-              name="Home"
+            {/* <Stack.Screen
+              name={ROUTE_NAMES.home}
               component={HomeScreen}
               options={{
                 title: '',
-                // headerLeft: () => <BackButton />,
               }}
-            />
+            /> */}
+            <Stack.Screen options={{title: ''}} name={ROUTE_NAMES.home}>
+              {_ => <LoginBasedView guards={[ActiveLoginGuard]} component={HomeScreen} />}
+            </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

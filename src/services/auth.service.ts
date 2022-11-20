@@ -1,4 +1,4 @@
-import {UserAdapter} from '../adapters';
+import {UserAdapter} from '@adapters';
 import {LoginProps, User} from '@models';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
@@ -23,7 +23,7 @@ class AuthService {
     return (await this.getCurrentUser())?.getIdToken() || '';
   };
 
-  public isLogedIn = async (): Promise<boolean> => {
+  public isLoggedIn = async (): Promise<boolean> => {
     return (await this.getCurrentUser()) !== null;
   };
 

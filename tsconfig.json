@@ -13,6 +13,8 @@
       "@screens/*": ["src/screens/*"],
       "@services": ["src/services/index"],
       "@store/*": ["src/store/*"],
+      "@routes": ["src/routes/index"],
+      "@guards": ["src/guards/index"],
       "@utils": ["src/utils/index"],
     },
     "useDefineForClassFields": true,
