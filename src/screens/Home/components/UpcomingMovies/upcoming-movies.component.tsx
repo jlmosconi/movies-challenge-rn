@@ -23,10 +23,8 @@ export const UpcomingMovies: FC = () => {
   }, [dispatch]);
 
   return loading ? (
-    <SkeletonPlaceholder borderRadius={4} backgroundColor="#282828" highlightColor="#181818">
-      <SkeletonPlaceholder.Item flexDirection="row" alignItems="center" width={screenWidth} height={height}>
-        <SkeletonPlaceholder.Item width={screenWidth} height={height} />
-      </SkeletonPlaceholder.Item>
+    <SkeletonPlaceholder backgroundColor="#282828" highlightColor="#181818">
+      <SkeletonPlaceholder.Item width={screenWidth} height={height} />
     </SkeletonPlaceholder>
   ) : (
     <View>

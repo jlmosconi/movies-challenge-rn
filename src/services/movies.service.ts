@@ -22,6 +22,24 @@ class MoviesService {
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
+  public getNowPlayingMovies = (): Observable<Movie[]> => {
+    return httpClientService
+      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.nowPlayingMovies}`, {api_key: this.api_key, language: this.language, page: 1})
+      .pipe(map(response => this.adaptMovies(response.results)));
+  };
+
+  public getPopularMovies = (): Observable<Movie[]> => {
+    return httpClientService
+      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.popularMovies}`, {api_key: this.api_key, language: this.language, page: 1})
+      .pipe(map(response => this.adaptMovies(response.results)));
+  };
+
+  public getTopRatedMovies = (): Observable<Movie[]> => {
+    return httpClientService
+      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.topRatedMovies}`, {api_key: this.api_key, language: this.language, page: 1})
+      .pipe(map(response => this.adaptMovies(response.results)));
+  };
+
   private adaptMovies = (movies: ApiMovie[]): Movie[] => movies.map(movie => MovieAdapter(movie));
 }
 

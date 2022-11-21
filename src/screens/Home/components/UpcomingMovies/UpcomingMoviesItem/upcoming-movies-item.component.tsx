@@ -35,7 +35,7 @@ export const UpcomingMoviesItem: FC<UpcomingMoviesItemComponentProps> = ({item, 
       </View>
       <LinearGradient
         colors={['rgba(18, 18, 18, .5)', 'rgba(18, 18, 18, .4)', 'rgba(18, 18, 18, .5)', 'rgba(18, 18, 18, 0)']}
-        style={[styles.linearGradientTop, {height: insets.top + insets.top * 1.1}]}
+        style={[styles.linearGradientTop, {height: insets.top + insets.top * 1.05}]}
       />
       <LinearGradient
         colors={['rgba(18, 18, 18, 0)', 'rgba(18, 18, 18, .6)', 'rgba(18, 18, 18, 1)', 'rgba(18, 18, 18, 1)']}
