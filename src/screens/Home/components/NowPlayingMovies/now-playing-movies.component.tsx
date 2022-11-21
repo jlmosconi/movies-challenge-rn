@@ -47,6 +47,7 @@ export const NowPlayingMovies: FC = () => {
         inactiveSlideScale={1}
         inactiveSlideOpacity={1}
         margin={10}
+        enableSnap={false}
         data={movies}
         renderItem={({item}: {item: Movie}) => _renderItem({item})}
       />
