@@ -3,6 +3,12 @@ import {
   getNowPlayingMovies,
   getNowPlayingMoviesFailure,
   getNowPlayingMoviesSuccess,
+  getPopularMovies,
+  getPopularMoviesFailure,
+  getPopularMoviesSuccess,
+  getTopRatedMovies,
+  getTopRatedMoviesFailure,
+  getTopRatedMoviesSuccess,
   getUpcomingMovies,
   getUpcomingMoviesFailure,
   getUpcomingMoviesSuccess,
@@ -33,25 +39,25 @@ export const moviesReducer = createReducer(MoviesEmptyState, builder => {
     state.upcomingMovies.loading = false;
   });
   // Popular Movies
-  builder.addCase(getNowPlayingMovies, state => {
-    state.upcomingMovies.loading = true;
+  builder.addCase(getPopularMovies, state => {
+    state.popularMovies.loading = true;
   });
-  builder.addCase(getNowPlayingMoviesSuccess, (state, {payload: movies}) => {
-    state.upcomingMovies.loading = false;
-    state.upcomingMovies.movies = movies;
+  builder.addCase(getPopularMoviesSuccess, (state, {payload: movies}) => {
+    state.popularMovies.loading = false;
+    state.popularMovies.movies = movies;
   });
-  builder.addCase(getNowPlayingMoviesFailure, state => {
-    state.upcomingMovies.loading = false;
+  builder.addCase(getPopularMoviesFailure, state => {
+    state.popularMovies.loading = false;
   });
   // Top Rated Movies
-  builder.addCase(getNowPlayingMovies, state => {
+  builder.addCase(getTopRatedMovies, state => {
     state.upcomingMovies.loading = true;
   });
-  builder.addCase(getNowPlayingMoviesSuccess, (state, {payload: movies}) => {
+  builder.addCase(getTopRatedMoviesSuccess, (state, {payload: movies}) => {
     state.upcomingMovies.loading = false;
     state.upcomingMovies.movies = movies;
   });
-  builder.addCase(getNowPlayingMoviesFailure, state => {
+  builder.addCase(getTopRatedMoviesFailure, state => {
     state.upcomingMovies.loading = false;
   });
 });

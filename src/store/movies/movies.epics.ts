@@ -5,9 +5,12 @@ import {of} from 'rxjs';
 import {catchError, filter, first, ignoreElements, map, switchMap} from 'rxjs/operators';
 import {
   getNowPlayingMovies,
+  getNowPlayingMoviesFailure,
   getNowPlayingMoviesSuccess,
+  getPopularMovies,
   getPopularMoviesFailure,
   getPopularMoviesSuccess,
+  getTopRatedMovies,
   getTopRatedMoviesFailure,
   getTopRatedMoviesSuccess,
   getUpcomingMovies,
@@ -42,12 +45,12 @@ const getNowPlayingMoviesEpic: Epic<Action> = action$ =>
     ),
   );
 
-const getNowPlayingMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getUpcomingMoviesSuccess.match), ignoreElements());
-const getNowPlayingMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getUpcomingMoviesFailure.match), ignoreElements());
+const getNowPlayingMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getNowPlayingMoviesSuccess.match), ignoreElements());
+const getNowPlayingMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getNowPlayingMoviesFailure.match), ignoreElements());
 
 export const getPopularMoviesEpic: Epic<Action> = action$ =>
   action$.pipe(
-    filter(getNowPlayingMovies.match),
+    filter(getPopularMovies.match),
     switchMap(() =>
       moviesService.getPopularMovies().pipe(
         first(),
@@ -57,12 +60,12 @@ export const getPopularMoviesEpic: Epic<Action> = action$ =>
     ),
   );
 
-const getPopularMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getUpcomingMoviesSuccess.match), ignoreElements());
-const getPopularMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getUpcomingMoviesFailure.match), ignoreElements());
+const getPopularMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getPopularMoviesSuccess.match), ignoreElements());
+const getPopularMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getPopularMoviesFailure.match), ignoreElements());
 
 const getTopRatedMoviesEpic: Epic<Action> = action$ =>
   action$.pipe(
-    filter(getNowPlayingMovies.match),
+    filter(getTopRatedMovies.match),
     switchMap(() =>
       moviesService.getTopRatedMovies().pipe(
         first(),
@@ -72,8 +75,8 @@ const getTopRatedMoviesEpic: Epic<Action> = action$ =>
     ),
   );
 
-const getTopRatedMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getUpcomingMoviesSuccess.match), ignoreElements());
-const getTopRatedMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getUpcomingMoviesFailure.match), ignoreElements());
+const getTopRatedMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getTopRatedMoviesSuccess.match), ignoreElements());
+const getTopRatedMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getTopRatedMoviesFailure.match), ignoreElements());
 
 export const moviesEpics = combineEpics(
   getUpcomingMoviesEpic,
