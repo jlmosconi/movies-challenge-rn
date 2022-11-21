@@ -18,7 +18,7 @@ export const MovieDetailsOverview: FC<MovieDetailsOverviewProps> = ({overview}) 
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    marginBottom: 25,
   },
   overview: {
     fontSize: 12,

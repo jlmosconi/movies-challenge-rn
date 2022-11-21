@@ -12,7 +12,7 @@ interface MovieDetailsAboutProps {
 export const MovieDetailsAbout: FC<MovieDetailsAboutProps> = ({status, budget, revenue}) => {
   return (
     <View style={styles.container}>
-      <MovieDetailsSectionTitle title="Acerca de la película" />
+      <MovieDetailsSectionTitle title="Información" />
       <View style={styles.item}>
         <AppText style={styles.itemTitle}>Estado: </AppText>
         <AppText textType="bold" style={styles.itemValue}>

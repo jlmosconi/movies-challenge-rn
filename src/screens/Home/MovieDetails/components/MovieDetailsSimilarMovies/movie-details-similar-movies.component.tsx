@@ -21,27 +21,6 @@ export const MovieDetailsSimilarMovies: FC<MovieDetailsSimilarMoviesProps> = ({m
     <View>
       <MovieDetailsSectionTitle title="Similares" />
       <MoviesList movies={movies} loading={loading} />
-      {/* <FlatList
-        horizontal={true}
-        data={movies}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => {
-          return (
-            <Image
-              style={{height: 140, width: 90, marginRight: 10}}
-              source={{
-                uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-              }}
-            />
-          );
-        }}
-      /> */}
-      {/* {movies.map(movie => (
-        <View key={movie.id}>
-          <AppText>{movie.title}</AppText>
-        </View>
-      ))} */}
     </View>
   );
 };

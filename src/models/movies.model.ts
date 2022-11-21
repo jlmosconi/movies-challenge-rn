@@ -91,3 +91,39 @@ interface SpokenLanguage {
   iso_639_1: string;
   name: string;
 }
+
+// CREDITS
+export interface ApiCreditsResponse {
+  id: number;
+  cast: CastApi[];
+  crew: CrewApi[];
+}
+
+export interface Cast {
+  id: number;
+  gender: number;
+  name: string;
+  profile_path: string | null;
+  character: string;
+  order: number;
+}
+
+export interface CastApi {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  order: number;
+}
+
+interface CrewApi extends Omit<CastApi, 'character' | 'order'> {
+  department: string;
+  job: string;
+}

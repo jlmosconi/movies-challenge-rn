@@ -15,7 +15,7 @@ export const TopRatedMovies: FC = () => {
 
   return (
     <View>
-      <MoviesListTitle title="Películas Mejores puntuadas" />
+      <MoviesListTitle title="Películas Mejor Puntuadas" />
       <MoviesList movies={movies} loading={loading} />
     </View>
   );

@@ -5,4 +5,5 @@ export const ENDPOINTS = {
   topRatedMovies: '/movie/top_rated',
   movieDetails: (movieId: number) => `/movie/${movieId}`,
   similarMovies: (movieId: number) => `/movie/${movieId}/similar`,
+  credits: (movieId: number) => `/movie/${movieId}/credits`,
 };

@@ -1,7 +1,7 @@
-import {MovieAdapter, MovieDetailsAdapter} from '@adapters';
+import {CastAdapter, MovieAdapter, MovieDetailsAdapter} from '@adapters';
 import {ENDPOINTS} from '@constants';
 import {APP_ENV_TMDB_APIKEY} from '@env';
-import {ApiMovie, ApiMovieDetails, ApiMovieResponse, Movie, MovieDetails} from '@models';
+import {ApiCreditsResponse, ApiMovie, ApiMovieDetails, ApiMovieResponse, Cast, CastApi, Movie, MovieDetails} from '@models';
 import {map, Observable} from 'rxjs';
 import {httpClientService} from './http-client.service';
 
@@ -53,11 +53,18 @@ class MoviesService {
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
+  public getCast = (id: number): Observable<Cast[]> => {
+    return httpClientService
+      .get<ApiCreditsResponse>(`${this.tmdbUrl}${ENDPOINTS.credits(id)}`, this.getQueryParamsDetails())
+      .pipe(map(response => this.adaptCast(response.cast)));
+  };
+
   private getQueryParamsList = () => ({api_key: this.api_key, language: this.language, page: 1});
   private getQueryParamsDetails = () => ({api_key: this.api_key, language: this.language});
 
   private adaptMovies = (movies: ApiMovie[]): Movie[] => movies.map(movie => MovieAdapter(movie));
   private adaptMovie = (movie: ApiMovieDetails): MovieDetails => MovieDetailsAdapter(movie);
+  private adaptCast = (cast: CastApi[]): Cast[] => cast.map(c => CastAdapter(c));
 }
 
 export const moviesService = MoviesService.getInstance();

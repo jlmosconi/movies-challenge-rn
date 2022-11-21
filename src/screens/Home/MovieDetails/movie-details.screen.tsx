@@ -8,6 +8,7 @@ import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {MovieDetailsAbout} from './components/MovieDetailsAbout/movie-details-about.component';
 import {MovieDetailsBackdrop} from './components/MovieDetailsBackdrop/movie-details-backdrop.component';
+import {MovieDetailsCast} from './components/MovieDetailsCast/movie-details-cast.component';
 import {MovieDetailInfo} from './components/MovieDetailsInfo/movie-details-info.component';
 import {MovieDetailsOverview} from './components/MovieDetailsOverview/movie-details-overview.component';
 import {MoviesDetailsPosterInfo} from './components/MovieDetailsPosterInfo/movies-details-poster-info.component';
@@ -40,6 +41,7 @@ export const MovieDetailsScreen: FC = () => {
             />
             <MovieDetailInfo runtime={movie?.runtime as string} genres={movie?.genres as Genre[]} />
             <MovieDetailsOverview overview={movie?.overview as string} />
+            <MovieDetailsCast movieId={movie?.id as number} />
             <MovieDetailsAbout status={movie?.status as string} budget={movie?.budget as string} revenue={movie?.revenue as string} />
             <MovieDetailsSimilarMovies movieId={movie?.id as number} />
           </View>

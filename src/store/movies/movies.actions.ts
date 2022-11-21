@@ -1,4 +1,4 @@
-import {Movie, MovieDetails} from '@models';
+import {Cast, Movie, MovieDetails} from '@models';
 import {createAction} from '@reduxjs/toolkit';
 
 const GET_UPCOMING_MOVIES = '[Movies] Get Upcoming Movies';
@@ -25,6 +25,10 @@ const GET_SIMILAR_MOVIES = '[Movies] Get Similar Movies';
 const GET_SIMILAR_MOVIES_SUCCESS = '[Movies] Get Similar Movies Success';
 const GET_SIMILAR_MOVIES_FAILURE = '[Movies] Get Similar Movies Failure';
 
+const GET_MOVIE_CAST = '[Movies] Get Movie Cast';
+const GET_MOVIE_CAST_SUCCESS = '[Movies] Get Movie Cast Success';
+const GET_MOVIE_CAST_FAILURE = '[Movies] Get Movie Cast Failure';
+
 export const getUpcomingMovies = createAction(GET_UPCOMING_MOVIES);
 export const getUpcomingMoviesSuccess = createAction<Movie[]>(GET_UPCOMING_MOVIES_SUCCESS);
 export const getUpcomingMoviesFailure = createAction(GET_UPCOMING_MOVIES_FAILURE);
@@ -48,3 +52,7 @@ export const getMovieDetailsFailure = createAction(GET_MOVIE_DETAILS_FAILURE);
 export const getSimilarMovies = createAction<{movieId: number}>(GET_SIMILAR_MOVIES);
 export const getSimilarMoviesSuccess = createAction<Movie[]>(GET_SIMILAR_MOVIES_SUCCESS);
 export const getSimilarMoviesFailure = createAction(GET_SIMILAR_MOVIES_FAILURE);
+
+export const getMovieCast = createAction<{movieId: number}>(GET_MOVIE_CAST);
+export const getMovieCastSuccess = createAction<Cast[]>(GET_MOVIE_CAST_SUCCESS);
+export const getMovieCastFailure = createAction(GET_MOVIE_CAST_FAILURE);

@@ -4,6 +4,9 @@ import {combineEpics, Epic} from 'redux-observable';
 import {of} from 'rxjs';
 import {catchError, filter, first, ignoreElements, map, switchMap} from 'rxjs/operators';
 import {
+  getMovieCast,
+  getMovieCastFailure,
+  getMovieCastSuccess,
   getMovieDetails,
   getMovieDetailsFailure,
   getMovieDetailsSuccess,
@@ -114,6 +117,21 @@ const getSimilarMoviesEpic: Epic<Action> = action$ =>
 const getSimilarMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getSimilarMoviesSuccess.match), ignoreElements());
 const getSimilarMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getSimilarMoviesFailure.match), ignoreElements());
 
+const getMovieCastEpic: Epic<Action> = action$ =>
+  action$.pipe(
+    filter(getMovieCast.match),
+    switchMap(({payload: {movieId}}) =>
+      moviesService.getCast(movieId).pipe(
+        first(),
+        map(getMovieCastSuccess),
+        catchError(() => of(getMovieCastFailure())),
+      ),
+    ),
+  );
+
+const getMovieCastSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getMovieCastSuccess.match), ignoreElements());
+const getMovieCastFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getMovieCastFailure.match), ignoreElements());
+
 export const moviesEpics = combineEpics(
   getUpcomingMoviesEpic,
   getUpcomingMoviesSuccessEpic,
@@ -133,4 +151,7 @@ export const moviesEpics = combineEpics(
   getSimilarMoviesEpic,
   getSimilarMoviesSuccessEpic,
   getSimilarMoviesFailureEpic,
+  getMovieCastEpic,
+  getMovieCastSuccessEpic,
+  getMovieCastFailureEpic,
 );

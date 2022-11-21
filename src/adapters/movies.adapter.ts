@@ -1,4 +1,4 @@
-import {Movie, ApiMovie, MovieDetails, ApiMovieDetails} from '@models';
+import {ApiMovie, ApiMovieDetails, Cast, CastApi, Movie, MovieDetails} from '@models';
 import {parseDate, parseDuration, parseMoney, parseStatus} from '@utils';
 
 export const MovieAdapter = (movie: ApiMovie): Movie => {
@@ -29,5 +29,16 @@ export const MovieDetailsAdapter = (movie: ApiMovieDetails): MovieDetails => {
     runtime: parseDuration(movie.runtime),
     vote_average: movie.vote_average,
     vote_count: movie.vote_count,
+  };
+};
+
+export const CastAdapter = (cast: CastApi): Cast => {
+  return {
+    id: cast.id,
+    gender: cast.gender,
+    name: cast.name,
+    profile_path: cast.profile_path,
+    character: cast.character,
+    order: cast.order,
   };
 };

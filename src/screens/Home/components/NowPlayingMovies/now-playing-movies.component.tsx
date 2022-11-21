@@ -15,7 +15,7 @@ export const NowPlayingMovies: FC = () => {
 
   return (
     <View>
-      <MoviesListTitle title="Proyectándose ahora" />
+      <MoviesListTitle title="Proyectándose Ahora" />
       <MoviesList movies={movies} loading={loading} />
     </View>
   );

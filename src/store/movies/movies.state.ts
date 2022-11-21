@@ -1,4 +1,4 @@
-import {Movie, MovieDetails} from '@models';
+import {Cast, Movie, MovieDetails} from '@models';
 export const MOVIES_STATE_NAME = 'movies';
 
 interface InitMovieState {
@@ -11,6 +11,11 @@ interface InitMovieDetailsState {
   movie: MovieDetails | null;
 }
 
+interface InitMovieCastState {
+  loading: boolean;
+  cast: Cast[] | null;
+}
+
 const initMoviesState = {
   movies: [],
   loading: false,
@@ -21,6 +26,11 @@ const initMovieDetailState = {
   loading: false,
 };
 
+const initMovieCastState = {
+  cast: null,
+  loading: false,
+};
+
 export interface MoviesState {
   upcomingMovies: InitMovieState;
   nowPlayingMovies: InitMovieState;
@@ -28,6 +38,7 @@ export interface MoviesState {
   topRatedMovies: InitMovieState;
   movieDetails: InitMovieDetailsState;
   similarMovies: InitMovieState;
+  movieCast: InitMovieCastState;
 }
 
 export const MoviesEmptyState: MoviesState = {
@@ -37,4 +48,5 @@ export const MoviesEmptyState: MoviesState = {
   topRatedMovies: initMoviesState,
   movieDetails: initMovieDetailState,
   similarMovies: initMoviesState,
+  movieCast: initMovieCastState,
 };

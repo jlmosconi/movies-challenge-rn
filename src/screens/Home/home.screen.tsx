@@ -10,25 +10,15 @@ import {TopRatedMovies} from './components/TopRatedMovies/top-rated-movies.compo
 import {UpcomingMovies} from './components/UpcomingMovies/upcoming-movies.component';
 
 export const HomeScreen: FC = () => {
-  const dispatch = useAppDispatch();
   return (
     <SafeAreaView edges={['bottom']}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={false}
-            onRefresh={() => {
-              // dispatch(getNowPlayingMovies());
-              // dispatch(getUpcomingMovies());
-            }}
-          />
-        }>
+      <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />}>
         <UpcomingMovies />
         <View style={style.container}>
           <NowPlayingMovies />
           <PopularMovies />
           <TopRatedMovies />
-          <Button title="Logout" onPress={() => dispatch(logout())} />
+          {/* <Button title="Logout" onPress={() => dispatch(logout())} /> */}
         </View>
       </ScrollView>
     </SafeAreaView>
