@@ -13,6 +13,9 @@ export const COLORS = {
   gray: hex2rgba('#f4f5f8', 0.4),
   gray2: '#dbdbdb',
   white: '#ffffff',
+
+  skeletonBackgroundColor: '#282828',
+  skeletonHighlightColor: '#181818',
 };
 
 export const FONTS = {

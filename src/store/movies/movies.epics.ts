@@ -40,7 +40,7 @@ const getNowPlayingMoviesEpic: Epic<Action> = action$ =>
       moviesService.getNowPlayingMovies().pipe(
         first(),
         map(getNowPlayingMoviesSuccess),
-        catchError(() => of(getUpcomingMoviesFailure())),
+        catchError(() => of(getNowPlayingMoviesFailure())),
       ),
     ),
   );

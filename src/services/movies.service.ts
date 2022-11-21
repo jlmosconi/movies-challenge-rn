@@ -24,18 +24,21 @@ class MoviesService {
   };
 
   public getNowPlayingMovies = (): Observable<Movie[]> => {
+    console.log('nowPlayingMovies', `${this.tmdbUrl}${ENDPOINTS.nowPlayingMovies}`);
     return httpClientService
       .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.nowPlayingMovies}`, this.getQueryParamsList())
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
   public getPopularMovies = (): Observable<Movie[]> => {
+    console.log('getPopularMovies', `${this.tmdbUrl}${ENDPOINTS.popularMovies}`);
     return httpClientService
       .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.popularMovies}`, this.getQueryParamsList())
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
   public getTopRatedMovies = (): Observable<Movie[]> => {
+    console.log('getTopRatedMovies', `${this.tmdbUrl}${ENDPOINTS.topRatedMovies}`);
     return httpClientService
       .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.topRatedMovies}`, this.getQueryParamsList())
       .pipe(map(response => this.adaptMovies(response.results)));

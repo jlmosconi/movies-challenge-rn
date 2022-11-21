@@ -51,13 +51,13 @@ export const moviesReducer = createReducer(MoviesEmptyState, builder => {
   });
   // Top Rated Movies
   builder.addCase(getTopRatedMovies, state => {
-    state.upcomingMovies.loading = true;
+    state.topRatedMovies.loading = true;
   });
   builder.addCase(getTopRatedMoviesSuccess, (state, {payload: movies}) => {
-    state.upcomingMovies.loading = false;
-    state.upcomingMovies.movies = movies;
+    state.topRatedMovies.loading = false;
+    state.topRatedMovies.movies = movies;
   });
   builder.addCase(getTopRatedMoviesFailure, state => {
-    state.upcomingMovies.loading = false;
+    state.topRatedMovies.loading = false;
   });
 });

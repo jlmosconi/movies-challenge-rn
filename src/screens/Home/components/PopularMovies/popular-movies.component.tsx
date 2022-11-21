@@ -1,21 +1,21 @@
 import {useAppDispatch, useAppSelector} from '@hooks';
-import {getNowPlayingMovies} from '@store/movies/movies.actions';
+import {getPopularMovies} from '@store/movies/movies.actions';
 import {FC, useEffect} from 'react';
 import {View} from 'react-native';
 import {MoviesList} from '../MoviesList/movies-list.component';
 import {MoviesListTitle} from '../MoviesList/MoviesListTitle/movies-list-title.component';
 
-export const NowPlayingMovies: FC = () => {
+export const PopularMovies: FC = () => {
   const dispatch = useAppDispatch();
-  const {loading, movies} = useAppSelector(state => state.movies.nowPlayingMovies);
+  const {loading, movies} = useAppSelector(state => state.movies.popularMovies);
 
   useEffect(() => {
-    dispatch(getNowPlayingMovies());
+    dispatch(getPopularMovies());
   }, [dispatch]);
 
   return (
     <View>
-      <MoviesListTitle title="Proyectándose ahora" />
+      <MoviesListTitle title="Películas Populares" />
       <MoviesList movies={movies} loading={loading} />
     </View>
   );

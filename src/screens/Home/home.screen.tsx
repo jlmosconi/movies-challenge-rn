@@ -5,6 +5,8 @@ import {FC} from 'react';
 import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NowPlayingMovies} from './components/NowPlayingMovies/now-playing-movies.component';
+import {PopularMovies} from './components/PopularMovies/popular-movies.component';
+import {TopRatedMovies} from './components/TopRatedMovies/top-rated-movies.component';
 import {UpcomingMovies} from './components/UpcomingMovies/upcoming-movies.component';
 
 export const HomeScreen: FC = () => {
@@ -24,7 +26,8 @@ export const HomeScreen: FC = () => {
         <UpcomingMovies />
         <View style={style.container}>
           <NowPlayingMovies />
-          <NowPlayingMovies />
+          <PopularMovies />
+          <TopRatedMovies />
           <Button title="Logout" onPress={() => dispatch(logout())} />
         </View>
       </ScrollView>
