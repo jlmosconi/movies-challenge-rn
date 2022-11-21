@@ -1,5 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
+  getMovieDetails,
+  getMovieDetailsFailure,
+  getMovieDetailsSuccess,
   getNowPlayingMovies,
   getNowPlayingMoviesFailure,
   getNowPlayingMoviesSuccess,
@@ -59,5 +62,16 @@ export const moviesReducer = createReducer(MoviesEmptyState, builder => {
   });
   builder.addCase(getTopRatedMoviesFailure, state => {
     state.topRatedMovies.loading = false;
+  });
+  // Details Movie
+  builder.addCase(getMovieDetails, state => {
+    state.movieDetails.loading = true;
+  });
+  builder.addCase(getMovieDetailsSuccess, (state, {payload: movie}) => {
+    state.movieDetails.loading = false;
+    state.movieDetails.movie = movie;
+  });
+  builder.addCase(getMovieDetailsFailure, state => {
+    state.movieDetails.loading = false;
   });
 });

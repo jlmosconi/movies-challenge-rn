@@ -1,7 +1,8 @@
-import {COLORS} from '@constants';
+import {COLORS, ROUTE_NAMES} from '@constants';
 import {Movie} from '@models';
+import {navigateService} from '@services';
 import {FC} from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 interface MoviesListItemProps {
@@ -19,12 +20,12 @@ export const MoviesListItem: FC<MoviesListItemProps> = ({item, itemWidth, loadin
       <SkeletonPlaceholder.Item style={[styles.image, {width: itemWidth}]} width={itemWidth} height={height} borderRadius={borderRadius} />
     </SkeletonPlaceholder>
   ) : (
-    <View>
+    <TouchableOpacity onPress={() => navigateService.navigate(ROUTE_NAMES.movieDetails, {movieId: item.id})}>
       <Image
         source={{uri: `https://image.tmdb.org/t/p/w370_and_h556_bestv2${item.poster_path}`}}
         style={[styles.image, {width: itemWidth}]}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -13,6 +13,10 @@ class NavigateService {
     navigationRef?.current?.navigate(url as never, params as never);
   }
 
+  public getParams(): any {
+    return navigationRef?.current?.getCurrentRoute()?.params;
+  }
+
   public navigateRoot(url: string, params = {}): void {
     navigateService.navigate(url, params);
     navigateService.reset(url);

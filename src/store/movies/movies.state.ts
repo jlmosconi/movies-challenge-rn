@@ -6,15 +6,27 @@ interface InitMovieState {
   movies: Movie[];
 }
 
+interface InitMovieDetailsState {
+  loading: boolean;
+  movie: Movie | null;
+}
+
 const initMoviesState = {
   movies: [],
   loading: false,
 };
+
+const initMovieDetailState = {
+  movie: null,
+  loading: false,
+};
+
 export interface MoviesState {
   upcomingMovies: InitMovieState;
   nowPlayingMovies: InitMovieState;
   popularMovies: InitMovieState;
   topRatedMovies: InitMovieState;
+  movieDetails: InitMovieDetailsState;
 }
 
 export const MoviesEmptyState: MoviesState = {
@@ -22,4 +34,5 @@ export const MoviesEmptyState: MoviesState = {
   nowPlayingMovies: initMoviesState,
   popularMovies: initMoviesState,
   topRatedMovies: initMoviesState,
+  movieDetails: initMovieDetailState,
 };

@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginBasedView} from '@routes';
 import {LoginScreen} from '@screens/Auth/Login/login.screen';
 import {HomeScreen} from '@screens/Home/home.screen';
+import {MovieDetailsScreen} from '@screens/Home/MovieDetails/movie-details.screen';
 import {navigationRef} from '@services';
 import {store} from '@store/index';
 import {FC} from 'react';
@@ -36,15 +37,11 @@ const App: FC = () => {
                 title: '',
               }}
             />
-            {/* <Stack.Screen
-              name={ROUTE_NAMES.home}
-              component={HomeScreen}
-              options={{
-                title: '',
-              }}
-            /> */}
             <Stack.Screen options={{title: ''}} name={ROUTE_NAMES.home}>
               {_ => <LoginBasedView guards={[() => ActiveLoginGuard]} component={HomeScreen} />}
+            </Stack.Screen>
+            <Stack.Screen options={{title: ''}} name={ROUTE_NAMES.movieDetails}>
+              {_ => <LoginBasedView guards={[() => ActiveLoginGuard]} component={MovieDetailsScreen} />}
             </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>

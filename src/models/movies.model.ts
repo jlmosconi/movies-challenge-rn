@@ -7,6 +7,18 @@ export interface Movie {
   release_date: string;
 }
 
+export interface MovieDetails extends Movie {
+  overview: string;
+  genres: Genre[];
+  budget: number;
+  imdb_id: string;
+  status: string;
+  revenue: number;
+  runtime: number;
+  vote_average: number;
+  vote_count: number;
+}
+
 export interface ApiMovieResponse {
   page: number;
   results: ApiMovie[];
@@ -33,4 +45,49 @@ export interface ApiMovie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+
+export interface ApiMovieDetails extends Omit<ApiMovie, 'genre_ids'> {
+  belongs_to_collection: BelongsToCollection;
+  budget: number;
+  genres: Genre[];
+  homepage: string;
+  imdb_id: string;
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
+  revenue: number;
+  runtime: number;
+  spoken_languages: SpokenLanguage[];
+  status: string;
+  tagline: string;
+}
+
+interface BelongsToCollection {
+  id: number;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+}
+
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface ProductionCompany {
+  id: number;
+  logo_path: string;
+  name: string;
+  origin_country: string;
+}
+
+interface ProductionCountry {
+  iso_3166_1: string;
+  name: string;
+}
+
+interface SpokenLanguage {
+  english_name: string;
+  iso_639_1: string;
+  name: string;
 }

@@ -2,8 +2,11 @@ import {Action} from '@reduxjs/toolkit';
 import {moviesService} from '@services';
 import {combineEpics, Epic} from 'redux-observable';
 import {of} from 'rxjs';
-import {catchError, filter, first, ignoreElements, map, switchMap, tap} from 'rxjs/operators';
+import {catchError, filter, first, ignoreElements, map, switchMap} from 'rxjs/operators';
 import {
+  getMovieDetails,
+  getMovieDetailsFailure,
+  getMovieDetailsSuccess,
   getNowPlayingMovies,
   getNowPlayingMoviesFailure,
   getNowPlayingMoviesSuccess,
@@ -78,6 +81,21 @@ const getTopRatedMoviesEpic: Epic<Action> = action$ =>
 const getTopRatedMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getTopRatedMoviesSuccess.match), ignoreElements());
 const getTopRatedMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getTopRatedMoviesFailure.match), ignoreElements());
 
+const getMovieDetailsEpic: Epic<Action> = action$ =>
+  action$.pipe(
+    filter(getMovieDetails.match),
+    switchMap(({payload: {movieId}}) =>
+      moviesService.getMovieDetails(movieId).pipe(
+        first(),
+        map(getMovieDetailsSuccess),
+        catchError(() => of(getMovieDetailsFailure())),
+      ),
+    ),
+  );
+
+const getMovieDetailsSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getMovieDetailsSuccess.match), ignoreElements());
+const getMovieDetailsFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getMovieDetailsFailure.match), ignoreElements());
+
 export const moviesEpics = combineEpics(
   getUpcomingMoviesEpic,
   getUpcomingMoviesSuccessEpic,
@@ -91,4 +109,7 @@ export const moviesEpics = combineEpics(
   getTopRatedMoviesEpic,
   getTopRatedMoviesSuccessEpic,
   getTopRatedMoviesFailureEpic,
+  getMovieDetailsEpic,
+  getMovieDetailsSuccessEpic,
+  getMovieDetailsFailureEpic,
 );

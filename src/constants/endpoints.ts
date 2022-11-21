@@ -3,5 +3,5 @@ export const ENDPOINTS = {
   nowPlayingMovies: '/movie/now_playing',
   popularMovies: '/movie/popular',
   topRatedMovies: '/movie/top_rated',
-  movieDetail: '/movie/:id',
+  movieDetails: (movieId: number) => `/movie/${movieId}`,
 };

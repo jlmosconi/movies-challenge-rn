@@ -17,6 +17,10 @@ const GET_TOP_RATED_MOVIES = '[Movies] Get Top Rated Movies';
 const GET_TOP_RATED_MOVIES_SUCCESS = '[Movies] Get Top Rated Movies Success';
 const GET_TOP_RATED_MOVIES_FAILURE = '[Movies] Get Top Rated Movies Failure';
 
+const GET_MOVIE_DETAILS = '[Movies] Get Movie Details';
+const GET_MOVIE_DETAILS_SUCCESS = '[Movies] Get Movie Details Success';
+const GET_MOVIE_DETAILS_FAILURE = '[Movies] Get Movie Details Failure';
+
 export const getUpcomingMovies = createAction(GET_UPCOMING_MOVIES);
 export const getUpcomingMoviesSuccess = createAction<Movie[]>(GET_UPCOMING_MOVIES_SUCCESS);
 export const getUpcomingMoviesFailure = createAction(GET_UPCOMING_MOVIES_FAILURE);
@@ -32,3 +36,7 @@ export const getPopularMoviesFailure = createAction(GET_POPULAR_MOVIES_FAILURE);
 export const getTopRatedMovies = createAction(GET_TOP_RATED_MOVIES);
 export const getTopRatedMoviesSuccess = createAction<Movie[]>(GET_TOP_RATED_MOVIES_SUCCESS);
 export const getTopRatedMoviesFailure = createAction(GET_TOP_RATED_MOVIES_FAILURE);
+
+export const getMovieDetails = createAction<{movieId: number}>(GET_MOVIE_DETAILS);
+export const getMovieDetailsSuccess = createAction<Movie>(GET_MOVIE_DETAILS_SUCCESS);
+export const getMovieDetailsFailure = createAction(GET_MOVIE_DETAILS_FAILURE);
