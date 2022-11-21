@@ -10,10 +10,10 @@ export interface Movie {
 export interface MovieDetails extends Movie {
   overview: string;
   genres: Genre[];
-  budget: number;
+  budget: string;
   imdb_id: string;
   status: string;
-  revenue: number;
+  revenue: string;
   runtime: string;
   vote_average: number;
   vote_count: number;

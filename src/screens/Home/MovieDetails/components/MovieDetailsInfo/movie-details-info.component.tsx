@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 26,
   },
   runtimeContainer: {
     display: 'flex',

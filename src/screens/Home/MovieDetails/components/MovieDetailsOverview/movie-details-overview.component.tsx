@@ -9,7 +9,7 @@ interface MovieDetailsOverviewProps {
 
 export const MovieDetailsOverview: FC<MovieDetailsOverviewProps> = ({overview}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <MovieDetailsSectionTitle title="Sinopsis" />
       <AppText style={styles.overview}>{overview}</AppText>
     </View>
@@ -17,6 +17,9 @@ export const MovieDetailsOverview: FC<MovieDetailsOverviewProps> = ({overview}) 
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 24,
+  },
   overview: {
     fontSize: 12,
     lineHeight: 17,

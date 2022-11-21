@@ -1,5 +1,5 @@
 import {Movie, ApiMovie, MovieDetails, ApiMovieDetails} from '@models';
-import {parseDate, parseDuration} from '@utils';
+import {parseDate, parseDuration, parseMoney, parseStatus} from '@utils';
 
 export const MovieAdapter = (movie: ApiMovie): Movie => {
   return {
@@ -22,10 +22,10 @@ export const MovieDetailsAdapter = (movie: ApiMovieDetails): MovieDetails => {
     release_date: parseDate(movie.release_date),
     overview: movie.overview,
     genres: movie.genres,
-    budget: movie.budget,
+    budget: parseMoney(movie.budget),
     imdb_id: movie.imdb_id,
-    status: movie.status,
-    revenue: movie.revenue,
+    status: parseStatus(movie.status),
+    revenue: parseMoney(movie.revenue),
     runtime: parseDuration(movie.runtime),
     vote_average: movie.vote_average,
     vote_count: movie.vote_count,

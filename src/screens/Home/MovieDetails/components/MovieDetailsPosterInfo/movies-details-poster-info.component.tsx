@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     width: 300,
     marginTop: -110,
-    marginBottom: 26,
+    marginBottom: 24,
   },
   image: {
     width: 100,
