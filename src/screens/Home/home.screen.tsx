@@ -8,11 +8,9 @@ import {UpcomingMovies} from './components/UpcomingMovies/upcoming-movies.compon
 export const HomeScreen: FC = () => {
   const dispatch = useAppDispatch();
   return (
-    // <SafeAreaView>
     <View>
       <UpcomingMovies />
       <Button title="Logout" onPress={() => dispatch(logout())} />
     </View>
-    // </SafeAreaView>r
   );
 };
