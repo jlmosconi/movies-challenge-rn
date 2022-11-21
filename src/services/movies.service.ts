@@ -47,6 +47,12 @@ class MoviesService {
       .pipe(map(response => this.adaptMovie(response)));
   };
 
+  public getSimilarMovies = (id: number): Observable<Movie[]> => {
+    return httpClientService
+      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.similarMovies(id)}`, this.getQueryParamsList())
+      .pipe(map(response => this.adaptMovies(response.results)));
+  };
+
   private getQueryParamsList = () => ({api_key: this.api_key, language: this.language, page: 1});
   private getQueryParamsDetails = () => ({api_key: this.api_key, language: this.language});
 

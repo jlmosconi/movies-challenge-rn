@@ -11,7 +11,7 @@ interface MovieDetailsAboutProps {
 
 export const MovieDetailsAbout: FC<MovieDetailsAboutProps> = ({status, budget, revenue}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <MovieDetailsSectionTitle title="Acerca de la película" />
       <View style={styles.item}>
         <AppText style={styles.itemTitle}>Estado: </AppText>
@@ -36,6 +36,9 @@ export const MovieDetailsAbout: FC<MovieDetailsAboutProps> = ({status, budget, r
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 24,
+  },
   item: {
     display: 'flex',
     flexDirection: 'row',

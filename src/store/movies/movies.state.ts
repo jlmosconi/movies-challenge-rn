@@ -27,6 +27,7 @@ export interface MoviesState {
   popularMovies: InitMovieState;
   topRatedMovies: InitMovieState;
   movieDetails: InitMovieDetailsState;
+  similarMovies: InitMovieState;
 }
 
 export const MoviesEmptyState: MoviesState = {
@@ -35,4 +36,5 @@ export const MoviesEmptyState: MoviesState = {
   popularMovies: initMoviesState,
   topRatedMovies: initMoviesState,
   movieDetails: initMovieDetailState,
+  similarMovies: initMoviesState,
 };

@@ -10,6 +10,7 @@ import {MovieDetailsBackdrop} from './components/MovieDetailsBackdrop/movie-deta
 import {MovieDetailInfo} from './components/MovieDetailsInfo/movie-details-info.component';
 import {MovieDetailsOverview} from './components/MovieDetailsOverview/movie-details-overview.component';
 import {MoviesDetailsPosterInfo} from './components/MovieDetailsPosterInfo/movies-details-poster-info.component';
+import {MovieDetailsSimilarMovies} from './components/MovieDetailsSimilarMovies/movie-details-similar-movies.component';
 
 export const MovieDetailsScreen: FC = () => {
   const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ export const MovieDetailsScreen: FC = () => {
             <MovieDetailInfo runtime={movie?.runtime as string} genres={movie?.genres as Genre[]} />
             <MovieDetailsOverview overview={movie?.overview as string} />
             <MovieDetailsAbout status={movie?.status as string} budget={movie?.budget as string} revenue={movie?.revenue as string} />
+            <MovieDetailsSimilarMovies movieId={movie?.id as number} />
           </View>
         </ScrollView>
       )}

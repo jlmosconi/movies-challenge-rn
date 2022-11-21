@@ -20,7 +20,7 @@ export const MoviesListItem: FC<MoviesListItemProps> = ({item, itemWidth, loadin
       <SkeletonPlaceholder.Item style={[styles.image, {width: itemWidth}]} width={itemWidth} height={height} borderRadius={borderRadius} />
     </SkeletonPlaceholder>
   ) : (
-    <TouchableOpacity onPress={() => navigateService.navigate(ROUTE_NAMES.movieDetails, {movieId: item.id})}>
+    <TouchableOpacity onPress={() => navigateService.push(ROUTE_NAMES.movieDetails, {movieId: item.id})}>
       <Image
         source={{uri: `https://image.tmdb.org/t/p/w370_and_h556_bestv2${item.poster_path}`}}
         style={[styles.image, {width: itemWidth}]}

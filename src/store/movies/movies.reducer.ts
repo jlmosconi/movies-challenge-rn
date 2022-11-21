@@ -9,6 +9,9 @@ import {
   getPopularMovies,
   getPopularMoviesFailure,
   getPopularMoviesSuccess,
+  getSimilarMovies,
+  getSimilarMoviesFailure,
+  getSimilarMoviesSuccess,
   getTopRatedMovies,
   getTopRatedMoviesFailure,
   getTopRatedMoviesSuccess,
@@ -73,5 +76,16 @@ export const moviesReducer = createReducer(MoviesEmptyState, builder => {
   });
   builder.addCase(getMovieDetailsFailure, state => {
     state.movieDetails.loading = false;
+  });
+  // Similar Movies
+  builder.addCase(getSimilarMovies, state => {
+    state.similarMovies.loading = true;
+  });
+  builder.addCase(getSimilarMoviesSuccess, (state, {payload: movies}) => {
+    state.similarMovies.loading = false;
+    state.similarMovies.movies = movies;
+  });
+  builder.addCase(getSimilarMoviesFailure, state => {
+    state.similarMovies.loading = false;
   });
 });

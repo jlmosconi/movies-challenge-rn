@@ -13,6 +13,9 @@ import {
   getPopularMovies,
   getPopularMoviesFailure,
   getPopularMoviesSuccess,
+  getSimilarMovies,
+  getSimilarMoviesFailure,
+  getSimilarMoviesSuccess,
   getTopRatedMovies,
   getTopRatedMoviesFailure,
   getTopRatedMoviesSuccess,
@@ -96,6 +99,21 @@ const getMovieDetailsEpic: Epic<Action> = action$ =>
 const getMovieDetailsSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getMovieDetailsSuccess.match), ignoreElements());
 const getMovieDetailsFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getMovieDetailsFailure.match), ignoreElements());
 
+const getSimilarMoviesEpic: Epic<Action> = action$ =>
+  action$.pipe(
+    filter(getSimilarMovies.match),
+    switchMap(({payload: {movieId}}) =>
+      moviesService.getSimilarMovies(movieId).pipe(
+        first(),
+        map(getSimilarMoviesSuccess),
+        catchError(() => of(getSimilarMoviesFailure())),
+      ),
+    ),
+  );
+
+const getSimilarMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getSimilarMoviesSuccess.match), ignoreElements());
+const getSimilarMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getSimilarMoviesFailure.match), ignoreElements());
+
 export const moviesEpics = combineEpics(
   getUpcomingMoviesEpic,
   getUpcomingMoviesSuccessEpic,
@@ -112,4 +130,7 @@ export const moviesEpics = combineEpics(
   getMovieDetailsEpic,
   getMovieDetailsSuccessEpic,
   getMovieDetailsFailureEpic,
+  getSimilarMoviesEpic,
+  getSimilarMoviesSuccessEpic,
+  getSimilarMoviesFailureEpic,
 );

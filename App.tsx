@@ -26,6 +26,7 @@ const App: FC = () => {
               headerTransparent: true,
               headerShadowVisible: false,
               statusBarStyle: 'inverted',
+              headerBackTitle: '',
               contentStyle: {
                 backgroundColor: COLORS.dark,
               },

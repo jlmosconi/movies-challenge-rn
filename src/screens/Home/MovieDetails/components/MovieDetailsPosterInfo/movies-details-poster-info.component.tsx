@@ -1,5 +1,6 @@
 import {AppText} from '@components';
 import {FC} from 'react';
+import {Dimensions} from 'react-native';
 import {Image, StyleSheet, View} from 'react-native';
 
 interface MoviesDetailsPosterInfoProps {
@@ -17,13 +18,13 @@ export const MoviesDetailsPosterInfo: FC<MoviesDetailsPosterInfoProps> = ({poste
         <AppText textType="bold" style={styles.title}>
           {title}
         </AppText>
-        {title !== originalTitle ? (
-          <>
-            <AppText textType="bold" style={styles.oroginalTitle}>
-              {originalTitle}
-            </AppText>
-          </>
-        ) : null}
+        {/* {title !== originalTitle ? (
+          <> */}
+        <AppText numberOfLines={2} textType="bold" style={styles.originalTitle}>
+          {originalTitle}
+        </AppText>
+        {/* </>
+        ) : null} */}
         <AppText textType="bold" style={styles.releaseDate}>
           {releaseDate}
         </AppText>
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-end',
-    width: 300,
+    width: Dimensions.get('window').width - 110,
     marginTop: -110,
     marginBottom: 24,
   },
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 4,
   },
-  oroginalTitle: {
+  originalTitle: {
     fontSize: 14,
     marginBottom: 4,
     opacity: 0.8,

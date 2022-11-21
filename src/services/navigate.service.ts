@@ -1,5 +1,6 @@
 import {createRef, RefObject} from 'react';
 import {NavigationContainerRef} from '@react-navigation/core';
+import {ROUTE_NAMES} from '@constants';
 
 class NavigateService {
   private static instance: NavigateService;
@@ -11,6 +12,20 @@ class NavigateService {
 
   public navigate(url: string, params = {}): void {
     navigationRef?.current?.navigate(url as never, params as never);
+  }
+
+  public push(url: string, params = {}): void {
+    navigationRef?.current?.dispatch({
+      type: 'PUSH',
+      payload: {
+        name: url,
+        params,
+      },
+    });
+
+    navigationRef?.current?.reset({
+      routes: [{name: ROUTE_NAMES.home}, {name: ROUTE_NAMES.movieDetails, params}],
+    });
   }
 
   public getParams(): any {
