@@ -29,14 +29,14 @@ export const moviesReducer = createReducer(MoviesEmptyState, builder => {
   });
   // Now Playing Movies
   builder.addCase(getNowPlayingMovies, state => {
-    state.upcomingMovies.loading = true;
+    state.nowPlayingMovies.loading = true;
   });
   builder.addCase(getNowPlayingMoviesSuccess, (state, {payload: movies}) => {
-    state.upcomingMovies.loading = false;
-    state.upcomingMovies.movies = movies;
+    state.nowPlayingMovies.loading = false;
+    state.nowPlayingMovies.movies = movies;
   });
   builder.addCase(getNowPlayingMoviesFailure, state => {
-    state.upcomingMovies.loading = false;
+    state.nowPlayingMovies.loading = false;
   });
   // Popular Movies
   builder.addCase(getPopularMovies, state => {
