@@ -4,7 +4,6 @@ import {Movie} from '@models';
 import {getUpcomingMovies} from '@store/movies/movies.actions';
 import {FC, useEffect, useRef} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-new-snap-carousel';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
@@ -31,14 +30,6 @@ export const UpcomingMovies: FC = () => {
     </SkeletonPlaceholder>
   ) : (
     <View>
-      <LinearGradient
-        colors={['rgba(18, 18, 18, .5)', 'rgba(18, 18, 18, .4)', 'rgba(18, 18, 18, 0)']}
-        style={[styles.linearGradientTop, {height: insets.top + 30}]}
-      />
-      <LinearGradient
-        colors={['rgba(18, 18, 18, 0)', 'rgba(18, 18, 18, .6)', 'rgba(18, 18, 18, 1)', 'rgba(18, 18, 18, 1)']}
-        style={[styles.linearGradient]}
-      />
       <Carousel
         ref={carouselRef}
         sliderWidth={screenWidth}
@@ -68,18 +59,5 @@ const styles = StyleSheet.create({
   upcomingTitle: {
     fontSize: 14,
     opacity: 0.8,
-  },
-  linearGradientTop: {
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    zIndex: 1,
-  },
-  linearGradient: {
-    position: 'absolute',
-    height: 50,
-    bottom: 0,
-    width: '100%',
-    zIndex: 1,
   },
 });

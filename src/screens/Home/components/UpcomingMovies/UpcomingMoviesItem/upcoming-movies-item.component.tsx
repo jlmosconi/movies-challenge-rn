@@ -2,6 +2,7 @@ import {AppText} from '@components';
 import {Movie} from '@models';
 import {FC} from 'react';
 import {Dimensions, Platform, StyleSheet, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import {ParallaxImage} from 'react-native-new-snap-carousel';
 import {EdgeInsets} from 'react-native-safe-area-context';
 
@@ -32,6 +33,14 @@ export const UpcomingMoviesItem: FC<UpcomingMoviesItemComponentProps> = ({item, 
           {item.release_date}
         </AppText>
       </View>
+      <LinearGradient
+        colors={['rgba(18, 18, 18, .5)', 'rgba(18, 18, 18, .4)', 'rgba(18, 18, 18, .5)', 'rgba(18, 18, 18, 0)']}
+        style={[styles.linearGradientTop, {height: insets.top + insets.top * 1.1}]}
+      />
+      <LinearGradient
+        colors={['rgba(18, 18, 18, 0)', 'rgba(18, 18, 18, .6)', 'rgba(18, 18, 18, 1)', 'rgba(18, 18, 18, 1)']}
+        style={[styles.linearGradient]}
+      />
     </View>
   );
 };
@@ -43,9 +52,11 @@ const styles = StyleSheet.create({
   },
   releaseTextWrapper: {
     position: 'absolute',
+    // bottom: 30,
     paddingHorizontal: 10,
     width: '100%',
     alignItems: 'flex-end',
+    zIndex: 2,
   },
   releaseText: {
     fontSize: 12,
@@ -58,5 +69,18 @@ const styles = StyleSheet.create({
   image: {
     ...StyleSheet.absoluteFillObject,
     resizeMode: 'cover',
+  },
+  linearGradientTop: {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    zIndex: 1,
+  },
+  linearGradient: {
+    position: 'absolute',
+    height: 100,
+    bottom: 0,
+    width: '100%',
+    zIndex: 1,
   },
 });
