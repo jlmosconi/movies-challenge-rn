@@ -32,6 +32,7 @@ export const MovieDetailsScreen: FC = () => {
           <View style={styles.container}>
             <MoviesDetailsPosterInfo
               title={movie?.title as string}
+              originalTitle={movie?.original_title as string}
               releaseDate={movie?.release_date as string}
               posterPath={movie?.poster_path as string}
             />

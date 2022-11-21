@@ -4,11 +4,12 @@ import {Image, StyleSheet, View} from 'react-native';
 
 interface MoviesDetailsPosterInfoProps {
   title: string;
+  originalTitle: string;
   releaseDate: string;
   posterPath: string;
 }
 
-export const MoviesDetailsPosterInfo: FC<MoviesDetailsPosterInfoProps> = ({posterPath, title, releaseDate}) => {
+export const MoviesDetailsPosterInfo: FC<MoviesDetailsPosterInfoProps> = ({posterPath, title, originalTitle, releaseDate}) => {
   return (
     <View style={styles.container}>
       <Image source={{uri: `https://image.tmdb.org/t/p/w370_and_h556_bestv2${posterPath}`}} style={styles.image} />
@@ -16,8 +17,15 @@ export const MoviesDetailsPosterInfo: FC<MoviesDetailsPosterInfoProps> = ({poste
         <AppText textType="bold" style={styles.title}>
           {title}
         </AppText>
+        {title !== originalTitle ? (
+          <>
+            <AppText textType="bold" style={styles.oroginalTitle}>
+              {originalTitle}
+            </AppText>
+          </>
+        ) : null}
         <AppText textType="bold" style={styles.releaseDate}>
-          Lanzamiento: {releaseDate}
+          {releaseDate}
         </AppText>
       </View>
     </View>
@@ -40,11 +48,16 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     marginBottom: 4,
+  },
+  oroginalTitle: {
+    fontSize: 14,
+    marginBottom: 4,
+    opacity: 0.8,
   },
   releaseDate: {
     fontSize: 11,
-    opacity: 0.7,
+    opacity: 0.6,
   },
 });

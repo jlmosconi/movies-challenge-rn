@@ -21,7 +21,7 @@ export const MovieDetailsAdapter = (movie: ApiMovieDetails): MovieDetails => {
     backdrop_path: movie.backdrop_path,
     release_date: parseDate(movie.release_date),
     overview: movie.overview,
-    genres: movie.genres,
+    genres: movie.genres.filter((_, i) => i < 3),
     budget: parseMoney(movie.budget),
     imdb_id: movie.imdb_id,
     status: parseStatus(movie.status),
