@@ -8,6 +8,7 @@ import {httpClientService} from './http-client.service';
 class MoviesService {
   private language = 'es-MX';
   private api_key = APP_ENV_TMDB_APIKEY;
+  private region = 'AR';
   private tmdbUrl = 'https://api.themoviedb.org/3';
   private static instance: MoviesService;
 
@@ -18,28 +19,29 @@ class MoviesService {
 
   public getUpcomingMovies = (): Observable<Movie[]> => {
     return httpClientService
-      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.upcomingMovies}`, {api_key: this.api_key, language: this.language, page: 1})
+      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.upcomingMovies}`, this.getQueryParamsList())
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
   public getNowPlayingMovies = (): Observable<Movie[]> => {
     return httpClientService
-      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.nowPlayingMovies}`, {api_key: this.api_key, language: this.language, page: 1})
+      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.nowPlayingMovies}`, this.getQueryParamsList())
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
   public getPopularMovies = (): Observable<Movie[]> => {
     return httpClientService
-      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.popularMovies}`, {api_key: this.api_key, language: this.language, page: 1})
+      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.popularMovies}`, this.getQueryParamsList())
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
   public getTopRatedMovies = (): Observable<Movie[]> => {
     return httpClientService
-      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.topRatedMovies}`, {api_key: this.api_key, language: this.language, page: 1})
+      .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.topRatedMovies}`, this.getQueryParamsList())
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
+  private getQueryParamsList = () => ({api_key: this.api_key, language: this.language, page: 1});
   private adaptMovies = (movies: ApiMovie[]): Movie[] => movies.map(movie => MovieAdapter(movie));
 }
 
