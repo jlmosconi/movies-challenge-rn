@@ -14,7 +14,7 @@ export interface MovieDetails extends Movie {
   imdb_id: string;
   status: string;
   revenue: number;
-  runtime: number;
+  runtime: string;
   vote_average: number;
   vote_count: number;
 }
@@ -69,7 +69,7 @@ interface BelongsToCollection {
   backdrop_path: string;
 }
 
-interface Genre {
+export interface Genre {
   id: number;
   name: string;
 }

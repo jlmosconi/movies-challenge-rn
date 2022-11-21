@@ -29,6 +29,7 @@ const App: FC = () => {
               contentStyle: {
                 backgroundColor: COLORS.dark,
               },
+              headerTintColor: COLORS.white,
             }}>
             <Stack.Screen
               name={ROUTE_NAMES.login}

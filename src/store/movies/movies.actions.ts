@@ -1,4 +1,4 @@
-import {Movie} from '@models';
+import {Movie, MovieDetails} from '@models';
 import {createAction} from '@reduxjs/toolkit';
 
 const GET_UPCOMING_MOVIES = '[Movies] Get Upcoming Movies';
@@ -38,5 +38,5 @@ export const getTopRatedMoviesSuccess = createAction<Movie[]>(GET_TOP_RATED_MOVI
 export const getTopRatedMoviesFailure = createAction(GET_TOP_RATED_MOVIES_FAILURE);
 
 export const getMovieDetails = createAction<{movieId: number}>(GET_MOVIE_DETAILS);
-export const getMovieDetailsSuccess = createAction<Movie>(GET_MOVIE_DETAILS_SUCCESS);
+export const getMovieDetailsSuccess = createAction<MovieDetails>(GET_MOVIE_DETAILS_SUCCESS);
 export const getMovieDetailsFailure = createAction(GET_MOVIE_DETAILS_FAILURE);

@@ -1,4 +1,4 @@
-import {Movie} from '@models';
+import {Movie, MovieDetails} from '@models';
 export const MOVIES_STATE_NAME = 'movies';
 
 interface InitMovieState {
@@ -8,7 +8,7 @@ interface InitMovieState {
 
 interface InitMovieDetailsState {
   loading: boolean;
-  movie: Movie | null;
+  movie: MovieDetails | null;
 }
 
 const initMoviesState = {

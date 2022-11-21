@@ -41,7 +41,7 @@ class MoviesService {
       .pipe(map(response => this.adaptMovies(response.results)));
   };
 
-  public getMovieDetails = (id: number): Observable<Movie> => {
+  public getMovieDetails = (id: number): Observable<MovieDetails> => {
     return httpClientService
       .get<ApiMovieDetails>(`${this.tmdbUrl}${ENDPOINTS.movieDetails(id)}`, this.getQueryParamsDetails())
       .pipe(map(response => this.adaptMovie(response)));
