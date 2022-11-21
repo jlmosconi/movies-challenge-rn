@@ -1,6 +1,7 @@
 import {useAppDispatch, useAppSelector} from '@hooks';
 import {Genre} from '@models';
-import {navigateService} from '@services';
+import {useIsFocused} from '@react-navigation/native';
+import {navigateService, navigationRef} from '@services';
 import {getMovieDetails} from '@store/movies/movies.actions';
 import {FC, useEffect} from 'react';
 import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';

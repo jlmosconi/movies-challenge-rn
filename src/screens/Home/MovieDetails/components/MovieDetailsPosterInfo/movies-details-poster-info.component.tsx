@@ -18,13 +18,13 @@ export const MoviesDetailsPosterInfo: FC<MoviesDetailsPosterInfoProps> = ({poste
         <AppText textType="bold" style={styles.title}>
           {title}
         </AppText>
-        {/* {title !== originalTitle ? (
-          <> */}
-        <AppText numberOfLines={2} textType="bold" style={styles.originalTitle}>
-          {originalTitle}
-        </AppText>
-        {/* </>
-        ) : null} */}
+        {title !== originalTitle ? (
+          <>
+            <AppText numberOfLines={2} textType="bold" style={styles.originalTitle}>
+              {originalTitle}
+            </AppText>
+          </>
+        ) : null}
         <AppText textType="bold" style={styles.releaseDate}>
           {releaseDate}
         </AppText>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-end',
-    width: Dimensions.get('window').width - 110,
+    width: Dimensions.get('window').width - 130,
     marginTop: -110,
     marginBottom: 24,
   },

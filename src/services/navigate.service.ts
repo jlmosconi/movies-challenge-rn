@@ -20,6 +20,7 @@ class NavigateService {
       payload: {
         name: url,
         params,
+        key: Math.random().toString(),
       },
     });
 

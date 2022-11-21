@@ -1,10 +1,8 @@
-import {AppText} from '@components';
 import {useAppDispatch, useAppSelector} from '@hooks';
 import {MoviesList} from '@screens/Home/components/MoviesList/movies-list.component';
 import {getSimilarMovies} from '@store/movies/movies.actions';
-import {useEffect} from 'react';
-import {FC} from 'react';
-import {FlatList, View, Image} from 'react-native';
+import {FC, useEffect} from 'react';
+import {View} from 'react-native';
 import {MovieDetailsSectionTitle} from '../MovieDetailsSectionTitle/movie-details-section-title.component';
 
 interface MovieDetailsSimilarMoviesProps {

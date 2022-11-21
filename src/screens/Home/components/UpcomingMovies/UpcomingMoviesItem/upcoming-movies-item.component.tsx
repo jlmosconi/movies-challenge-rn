@@ -1,7 +1,9 @@
 import {AppText} from '@components';
+import {ROUTE_NAMES} from '@constants';
 import {Movie} from '@models';
+import {navigateService} from '@services';
 import {FC} from 'react';
-import {Dimensions, Platform, StyleSheet, View} from 'react-native';
+import {Dimensions, Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {ParallaxImage} from 'react-native-new-snap-carousel';
 import {EdgeInsets} from 'react-native-safe-area-context';
@@ -17,7 +19,7 @@ interface UpcomingMoviesItemComponentProps {
 
 export const UpcomingMoviesItem: FC<UpcomingMoviesItemComponentProps> = ({item, parallaxProps, insets}) => {
   return (
-    <View style={styles.item}>
+    <TouchableOpacity style={styles.item} onPress={() => navigateService.push(ROUTE_NAMES.movieDetails, {movieId: item.id})}>
       <ParallaxImage
         source={{uri: 'https://www.themoviedb.org/t/p/original' + item.poster_path || ''}}
         containerStyle={styles.imageContainer}
@@ -41,7 +43,7 @@ export const UpcomingMoviesItem: FC<UpcomingMoviesItemComponentProps> = ({item, 
         colors={['rgba(18, 18, 18, 0)', 'rgba(18, 18, 18, .6)', 'rgba(18, 18, 18, 1)', 'rgba(18, 18, 18, 1)']}
         style={styles.linearGradient}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
