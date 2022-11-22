@@ -3,13 +3,13 @@ import {ActiveLoginGuard} from '@guards';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginBasedView} from '@routes';
 import {LoginScreen} from '@screens/Auth/Login/login.screen';
-import {MovieDetailsScreen} from '@screens/Home/MovieDetails/movie-details.screen';
+import {MovieDetailsScreen} from '@screens/MovieDetails/movie-details.screen';
 import {FC} from 'react';
-import {TabNavigator} from './app.navigation';
+import {TabNavigator} from './tab.navigator';
 
 const Stack = createNativeStackNavigator();
 
-export const MainNavigator: FC = () => {
+export const StackNavigator: FC = () => {
   return (
     <Stack.Navigator
       initialRouteName={ROUTE_NAMES.home}

@@ -1,5 +1,5 @@
 import {ToastCustom} from '@components';
-import {MainNavigator} from '@navigation/main.navigation';
+import {StackNavigator} from '@navigator/stack.navigator';
 import {NavigationContainer} from '@react-navigation/native';
 import {navigationRef} from '@services';
 import {store} from '@store/index';
@@ -11,7 +11,7 @@ const App: FC = () => {
     <>
       <Provider store={store}>
         <NavigationContainer ref={navigationRef}>
-          <MainNavigator />
+          <StackNavigator />
         </NavigationContainer>
       </Provider>
       <ToastCustom />
