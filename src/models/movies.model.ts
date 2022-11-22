@@ -5,6 +5,7 @@ export interface Movie {
   poster_path: string | null;
   backdrop_path: string | null;
   release_date: string;
+  overview: string;
 }
 
 export interface MovieDetails extends Movie {

@@ -9,6 +9,7 @@ export const MovieAdapter = (movie: ApiMovie): Movie => {
     poster_path: movie.poster_path,
     backdrop_path: movie.backdrop_path,
     release_date: parseDate(movie.release_date),
+    overview: movie.overview,
   };
 };
 

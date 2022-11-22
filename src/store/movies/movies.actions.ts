@@ -29,6 +29,10 @@ const GET_MOVIE_CAST = '[Movies] Get Movie Cast';
 const GET_MOVIE_CAST_SUCCESS = '[Movies] Get Movie Cast Success';
 const GET_MOVIE_CAST_FAILURE = '[Movies] Get Movie Cast Failure';
 
+const SEARCH_MOVIES = '[Movies] Search Movies';
+const SEARCH_MOVIES_SUCCESS = '[Movies] Search Movies Success';
+const SEARCH_MOVIES_FAILURE = '[Movies] Search Movies Failure';
+
 export const getUpcomingMovies = createAction(GET_UPCOMING_MOVIES);
 export const getUpcomingMoviesSuccess = createAction<Movie[]>(GET_UPCOMING_MOVIES_SUCCESS);
 export const getUpcomingMoviesFailure = createAction(GET_UPCOMING_MOVIES_FAILURE);
@@ -56,3 +60,7 @@ export const getSimilarMoviesFailure = createAction(GET_SIMILAR_MOVIES_FAILURE);
 export const getMovieCast = createAction<{movieId: number}>(GET_MOVIE_CAST);
 export const getMovieCastSuccess = createAction<Cast[]>(GET_MOVIE_CAST_SUCCESS);
 export const getMovieCastFailure = createAction(GET_MOVIE_CAST_FAILURE);
+
+export const searchMovies = createAction<{query: string}>(SEARCH_MOVIES);
+export const searchMoviesSuccess = createAction<Movie[]>(SEARCH_MOVIES_SUCCESS);
+export const searchMoviesFailure = createAction(SEARCH_MOVIES_FAILURE);

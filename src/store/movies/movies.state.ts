@@ -16,6 +16,11 @@ interface InitMovieCastState {
   cast: Cast[] | null;
 }
 
+interface InitSearchMoviesState {
+  loading: boolean;
+  movies: Movie[] | null;
+}
+
 const initMoviesState = {
   movies: [],
   loading: false,
@@ -31,6 +36,11 @@ const initMovieCastState = {
   loading: false,
 };
 
+const initSearchMoviesState = {
+  movies: null,
+  loading: false,
+};
+
 export interface MoviesState {
   upcomingMovies: InitMovieState;
   nowPlayingMovies: InitMovieState;
@@ -39,6 +49,7 @@ export interface MoviesState {
   movieDetails: InitMovieDetailsState;
   similarMovies: InitMovieState;
   movieCast: InitMovieCastState;
+  searchMovies: InitSearchMoviesState;
 }
 
 export const MoviesEmptyState: MoviesState = {
@@ -49,4 +60,5 @@ export const MoviesEmptyState: MoviesState = {
   movieDetails: initMovieDetailState,
   similarMovies: initMoviesState,
   movieCast: initMovieCastState,
+  searchMovies: initSearchMoviesState,
 };

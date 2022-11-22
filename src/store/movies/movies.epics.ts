@@ -2,7 +2,7 @@ import {Action} from '@reduxjs/toolkit';
 import {moviesService} from '@services';
 import {combineEpics, Epic} from 'redux-observable';
 import {of} from 'rxjs';
-import {catchError, filter, first, ignoreElements, map, switchMap, tap} from 'rxjs/operators';
+import {catchError, debounceTime, distinctUntilChanged, filter, first, ignoreElements, map, switchMap, tap} from 'rxjs/operators';
 import {
   getMovieCast,
   getMovieCastFailure,
@@ -25,6 +25,9 @@ import {
   getUpcomingMovies,
   getUpcomingMoviesFailure,
   getUpcomingMoviesSuccess,
+  searchMovies,
+  searchMoviesFailure,
+  searchMoviesSuccess,
 } from './movies.actions';
 
 const getUpcomingMoviesEpic: Epic<Action> = action$ =>
@@ -132,6 +135,24 @@ const getMovieCastEpic: Epic<Action> = action$ =>
 const getMovieCastSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(getMovieCastSuccess.match), ignoreElements());
 const getMovieCastFailureEpic: Epic<Action> = action$ => action$.pipe(filter(getMovieCastFailure.match), ignoreElements());
 
+const searchMoviesEpic: Epic<Action> = action$ =>
+  action$.pipe(
+    filter(searchMovies.match),
+    debounceTime(600), // Prevents multiple calls to the same action
+    distinctUntilChanged(),
+    filter(({payload: {query}}) => !!query),
+    switchMap(({payload: {query}}) =>
+      moviesService.searchMovies(query).pipe(
+        first(),
+        map(searchMoviesSuccess),
+        catchError(() => of(searchMoviesFailure())),
+      ),
+    ),
+  );
+
+const searchMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(searchMoviesSuccess.match), ignoreElements());
+const searchMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(searchMoviesFailure.match), ignoreElements());
+
 export const moviesEpics = combineEpics(
   getUpcomingMoviesEpic,
   getUpcomingMoviesSuccessEpic,
@@ -154,4 +175,7 @@ export const moviesEpics = combineEpics(
   getMovieCastEpic,
   getMovieCastSuccessEpic,
   getMovieCastFailureEpic,
+  searchMoviesEpic,
+  searchMoviesSuccessEpic,
+  searchMoviesFailureEpic,
 );

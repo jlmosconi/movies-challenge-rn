@@ -6,8 +6,12 @@ interface AppTextProps extends TextProps {
   textType?: 'regular' | 'bold';
 }
 
-export const AppText: FC<AppTextProps> = ({children, style, textType = 'regular'}): JSX.Element => {
-  return <Text style={[styles[textType], styles.color, style]}>{children}</Text>;
+export const AppText: FC<AppTextProps> = ({children, style, textType = 'regular', ...props}): JSX.Element => {
+  return (
+    <Text style={[styles[textType], styles.color, style]} {...props}>
+      {children}
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({

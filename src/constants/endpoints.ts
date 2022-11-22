@@ -6,4 +6,5 @@ export const ENDPOINTS = {
   movieDetails: (movieId: number) => `/movie/${movieId}`,
   similarMovies: (movieId: number) => `/movie/${movieId}/similar`,
   credits: (movieId: number) => `/movie/${movieId}/credits`,
+  searchMovies: '/search/movie',
 };

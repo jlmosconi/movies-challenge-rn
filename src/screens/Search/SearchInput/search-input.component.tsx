@@ -1,17 +1,21 @@
-import {AppText} from '@components';
 import {COLORS} from '@constants';
+import {useAppDispatch} from '@hooks';
+import {searchMovies} from '@store/movies/movies.actions';
 import {FC, useEffect, useRef, useState} from 'react';
 import {Pressable, StyleSheet, TextInput, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const SearchInput: FC = () => {
+  const dispatch = useAppDispatch();
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const textInput = useRef<TextInput>(null);
   const [value, setValue] = useState<string>('');
 
   useEffect(() => {
-    console.log('value', value);
-  }, [value]);
+    if (value) {
+      dispatch(searchMovies({query: value}));
+    }
+  }, [value, dispatch]);
 
   return (
     <View style={style.inputWrapper}>

@@ -21,6 +21,9 @@ import {
   getUpcomingMovies,
   getUpcomingMoviesFailure,
   getUpcomingMoviesSuccess,
+  searchMovies,
+  searchMoviesFailure,
+  searchMoviesSuccess,
 } from './movies.actions';
 import {MoviesEmptyState} from './movies.state';
 
@@ -101,5 +104,16 @@ export const moviesReducer = createReducer(MoviesEmptyState, builder => {
   });
   builder.addCase(getMovieCastFailure, state => {
     state.movieCast.loading = false;
+  });
+  // Search Movies
+  builder.addCase(searchMovies, state => {
+    state.searchMovies.loading = true;
+  });
+  builder.addCase(searchMoviesSuccess, (state, {payload: movies}) => {
+    state.searchMovies.loading = false;
+    state.searchMovies.movies = movies;
+  });
+  builder.addCase(searchMoviesFailure, state => {
+    state.searchMovies.loading = false;
   });
 });
