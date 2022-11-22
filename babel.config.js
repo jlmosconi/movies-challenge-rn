@@ -6,6 +6,7 @@ module.exports = {
       {
         alias: {
           '@assets': './assets',
+          '@navigation': './src/navigation',
           '@adapters': './src/adapters',
           '@components': './src/components',
           '@constants': './src/constants',
