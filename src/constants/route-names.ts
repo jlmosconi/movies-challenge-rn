@@ -1,7 +1,7 @@
 export const ROUTE_NAMES = {
   login: 'Login',
-  app: 'App',
   home: 'Home',
+  homeScreen: 'HomeScreen',
   search: 'Search',
   profile: 'Profile',
   genres: 'Genres',

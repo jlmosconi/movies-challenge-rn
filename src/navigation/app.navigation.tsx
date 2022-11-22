@@ -27,7 +27,7 @@ export const TabNavigator: FC = () => {
         },
       }}>
       <Tab.Screen
-        name={ROUTE_NAMES.home}
+        name={ROUTE_NAMES.homeScreen}
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
