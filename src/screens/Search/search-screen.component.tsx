@@ -3,8 +3,8 @@ import {COLORS} from '@constants';
 import {FC} from 'react';
 import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {SearchInput} from './SearchInput/search-input.component';
-import {SearchResult} from './SearchResult/search-result.component';
+import {SearchInput} from './components/SearchInput/search-input.component';
+import {SearchResult} from './components/SearchResult/search-result.component';
 
 export const SearchScreen: FC = () => {
   return (

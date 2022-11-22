@@ -4,18 +4,20 @@ import {useAppSelector} from '@hooks';
 import {Movie} from '@models';
 import {navigateService} from '@services';
 import {FC} from 'react';
-import {FlatList, StyleSheet, View, Image, Dimensions, Text, TouchableOpacity} from 'react-native';
+import {FlatList, StyleSheet, View, Image, Dimensions, TouchableOpacity} from 'react-native';
 
 export const SearchResult: FC = () => {
   const {movies, loading} = useAppSelector(state => state.movies.searchMovies);
 
-  return loading ? (
-    <AppText>Cargando...</AppText>
-  ) : movies && movies.length > 0 ? (
-    <FlatList data={movies} keyExtractor={item => item.id.toString()} renderItem={({item}) => <MovieCard movie={item} />} />
-  ) : (
-    <AppText>No se encontraron resultados</AppText>
-  );
+  if (loading) {
+    return <AppText>Cargando...</AppText>;
+  }
+
+  if (movies && movies.length === 0) {
+    return <AppText>No se encontraron resultados</AppText>;
+  }
+
+  return <FlatList data={movies} keyExtractor={item => item.id.toString()} renderItem={({item}) => <MovieCard movie={item} />} />;
 };
 
 export const MovieCard: FC<{movie: Movie}> = ({movie}) => {

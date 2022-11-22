@@ -2,7 +2,7 @@ import {AppText} from '@components';
 import {COLORS} from '@constants';
 import {AppGenre} from '@models';
 import {FC} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface GenresItemComponentProps {
@@ -11,12 +11,12 @@ interface GenresItemComponentProps {
 
 export const GenresItemComponent: FC<GenresItemComponentProps> = ({item}) => {
   return (
-    <View style={styles.box}>
+    <TouchableOpacity style={styles.box}>
       <Icon name={item.icon || 'movie'} size={50} color={COLORS.white} style={styles.icon} />
       <AppText textType="bold" style={styles.name}>
         {item.name}
       </AppText>
-    </View>
+    </TouchableOpacity>
   );
 };
 

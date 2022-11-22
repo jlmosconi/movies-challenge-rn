@@ -2,7 +2,7 @@ import {CastAdapter, MovieAdapter, MovieDetailsAdapter} from '@adapters';
 import {ENDPOINTS} from '@constants';
 import {APP_ENV_TMDB_APIKEY} from '@env';
 import {ApiCreditsResponse, ApiMovie, ApiMovieDetails, ApiMovieResponse, Cast, CastApi, Movie, MovieDetails} from '@models';
-import {map, Observable} from 'rxjs';
+import {map, Observable, of} from 'rxjs';
 import {httpClientService} from './http-client.service';
 
 class MoviesService {

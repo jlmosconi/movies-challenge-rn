@@ -2,7 +2,7 @@ import {COLORS} from '@constants';
 import {FC} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {GenresList} from './GenresList/genres-list.component';
+import {GenresList} from './components/GenresList/genres-list.component';
 
 export const GenresScreen: FC = () => {
   return (
