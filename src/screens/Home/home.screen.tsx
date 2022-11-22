@@ -1,5 +1,7 @@
 import {COLORS} from '@constants';
-import {FC} from 'react';
+import {useAppDispatch} from '@hooks';
+import {getUserInRealtime} from '@store/user/user.actions';
+import {FC, useEffect} from 'react';
 import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
 import {NowPlayingMovies} from './components/NowPlayingMovies/now-playing-movies.component';
 import {PopularMovies} from './components/PopularMovies/popular-movies.component';
@@ -7,6 +9,11 @@ import {TopRatedMovies} from './components/TopRatedMovies/top-rated-movies.compo
 import {UpcomingMovies} from './components/UpcomingMovies/upcoming-movies.component';
 
 export const HomeScreen: FC = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getUserInRealtime());
+  }, [dispatch]);
+
   return (
     <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />} style={styles.bg}>
       <UpcomingMovies />

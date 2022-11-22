@@ -10,9 +10,6 @@ import {clearUserData, getUserInRealtime, setUserData} from './user.actions';
 const setUserDataEpic: Epic<Action> = action$ =>
   action$.pipe(
     filter(setUserData.match),
-    tap(({payload: user}) => {
-      console.log(user);
-    }),
     switchMap(({payload: user}) => from(localStorageService.setItem(STORAGE.USER, user)).pipe(first())),
     ignoreElements(),
   );
@@ -20,9 +17,10 @@ const setUserDataEpic: Epic<Action> = action$ =>
 const getUserInRealtimeEpic: Epic<Action> = action$ =>
   action$.pipe(
     filter(getUserInRealtime.match),
+    filter(() => !userService.getUserUnsubscribe()),
     switchMap(() => localStorageService.getItem<User>(STORAGE.USER)),
+    filter(user => !!user?.uid),
     switchMap(user => userService.getUserInRealTime(user.uid)),
-    filter(user => !!user.uid),
     map(user => setUserData(user)),
   );
 

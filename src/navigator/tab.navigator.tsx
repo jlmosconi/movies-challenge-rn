@@ -38,26 +38,27 @@ export const TabNavigator: FC = () => {
           tabBarIcon: ({focused, color, size}) => <Icon name={focused ? 'home' : 'home-outline'} color={color} size={size} />,
         }}
       />
-      <Tab.Screen
-        name={ROUTE_NAMES.genres}
-        component={GenresScreen}
-        options={{
-          tabBarLabel: 'Géneros',
-          tabBarIcon: ({focused, color, size}) => (
-            <Icon name={focused ? 'layers-triple' : 'layers-triple-outline'} color={color} size={size} />
-          ),
-        }}
-      />
       {userData?.role === UserRoles.PRE_RELEASE ? (
         <Tab.Screen
-          name={ROUTE_NAMES.search}
-          component={SearchScreen}
+          name={ROUTE_NAMES.genres}
+          component={GenresScreen}
           options={{
-            tabBarLabel: 'Buscar',
-            tabBarIcon: ({color, size}) => <Icon name="magnify" color={color} size={size} />,
+            tabBarLabel: 'Géneros',
+            tabBarIcon: ({focused, color, size}) => (
+              <Icon name={focused ? 'layers-triple' : 'layers-triple-outline'} color={color} size={size} />
+            ),
           }}
         />
       ) : null}
+
+      <Tab.Screen
+        name={ROUTE_NAMES.search}
+        component={SearchScreen}
+        options={{
+          tabBarLabel: 'Buscar',
+          tabBarIcon: ({color, size}) => <Icon name="magnify" color={color} size={size} />,
+        }}
+      />
 
       <Tab.Screen
         name={ROUTE_NAMES.profile}

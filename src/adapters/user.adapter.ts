@@ -6,6 +6,6 @@ export const UserAdapter = (user: ApiUser): User => {
     email: user.email || '',
     displayName: user.displayName || '',
     photoURL: user.photoURL || '',
-    role: user.role || 'user',
+    role: user.role || 'release',
   };
 };

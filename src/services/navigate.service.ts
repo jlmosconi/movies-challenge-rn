@@ -14,19 +14,24 @@ class NavigateService {
     navigationRef?.current?.navigate(url as never, params as never);
   }
 
-  public push(url: string, params = {}): void {
+  public push(url: string, params = {}, key = Math.random()): void {
     navigationRef?.current?.dispatch({
       type: 'PUSH',
       payload: {
         name: url,
         params,
-        key: Math.random().toString(),
+        key: `${url}-${key}`,
       },
     });
 
-    navigationRef?.current?.reset({
-      routes: [{name: ROUTE_NAMES.home}, {name: ROUTE_NAMES.movieDetails, params}],
-    });
+    // navigationRef?.current?
+
+    // navigationRef?.current?.reset({
+    //   routes: [
+    //     // {name: ROUTE_NAMES.home},
+    //     // {name: ROUTE_NAMES.movieDetails, params},
+    //   ],
+    // });
   }
 
   public getParams(): any {

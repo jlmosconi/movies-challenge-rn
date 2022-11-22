@@ -19,7 +19,7 @@ interface UpcomingMoviesItemComponentProps {
 
 export const UpcomingMoviesItem: FC<UpcomingMoviesItemComponentProps> = ({item, parallaxProps, insets}) => {
   return (
-    <Pressable style={styles.item} onPress={() => navigateService.push(ROUTE_NAMES.movieDetails, {movieId: item.id})}>
+    <Pressable style={styles.item} onPress={() => navigateService.navigate(ROUTE_NAMES.movieDetails, {movieId: item.id})}>
       <ParallaxImage
         source={{uri: 'https://www.themoviedb.org/t/p/original' + item.poster_path || ''}}
         containerStyle={styles.imageContainer}

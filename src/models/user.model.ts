@@ -1,8 +1,7 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 export const enum UserRoles {
-  ADMIN = 'admin',
-  USER = 'user',
+  RELEASE = 'release',
   PRE_RELEASE = 'pre-release',
 }
 

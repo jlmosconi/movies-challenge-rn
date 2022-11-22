@@ -6,6 +6,8 @@ import {LoginScreen} from '@screens/Auth/Login/login.screen';
 import {MovieDetailsScreen} from '@screens/MovieDetails/movie-details.screen';
 import {FC} from 'react';
 import {TabNavigator} from './tab.navigator';
+import {HeaderBackButton} from '@react-navigation/elements';
+import {navigateService} from '@services';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,7 +36,12 @@ export const StackNavigator: FC = () => {
       <Stack.Screen options={{title: ''}} name={ROUTE_NAMES.home}>
         {_ => <LoginBasedView guards={[() => ActiveLoginGuard]} component={TabNavigator} />}
       </Stack.Screen>
-      <Stack.Screen options={{title: ''}} name={ROUTE_NAMES.movieDetails}>
+      <Stack.Screen
+        name={ROUTE_NAMES.movieDetails}
+        options={{
+          title: '',
+          headerLeft: props => <HeaderBackButton {...props} onPress={() => navigateService.navigate(ROUTE_NAMES.home)} />,
+        }}>
         {_ => <LoginBasedView guards={[() => ActiveLoginGuard]} component={MovieDetailsScreen} />}
       </Stack.Screen>
     </Stack.Navigator>

@@ -43,6 +43,10 @@ class UserService {
     return this.user$.asObservable();
   }
 
+  public getUserUnsubscribe(): Unsubscribe {
+    return this.userUnsubscribe;
+  }
+
   public unsubscribeUser(): void {
     this.userUnsubscribe ? this.userUnsubscribe() : null;
   }
