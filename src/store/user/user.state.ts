@@ -12,5 +12,6 @@ export const UserEmptyState: UserState = {
     email: '',
     displayName: '',
     photoURL: '',
+    role: 'user',
   },
 };

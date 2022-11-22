@@ -1,4 +1,6 @@
 import {COLORS, ROUTE_NAMES} from '@constants';
+import {useAppSelector} from '@hooks';
+import {UserRoles} from '@models';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {GenresScreen} from '@screens/Genres/genres-screen.component';
 import {HomeScreen} from '@screens/Home/home.screen';
@@ -10,6 +12,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Tab = createBottomTabNavigator();
 
 export const TabNavigator: FC = () => {
+  const {userData} = useAppSelector(state => state.user);
+
   return (
     <Tab.Navigator
       initialRouteName={ROUTE_NAMES.home}
@@ -44,14 +48,17 @@ export const TabNavigator: FC = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name={ROUTE_NAMES.search}
-        component={SearchScreen}
-        options={{
-          tabBarLabel: 'Buscar',
-          tabBarIcon: ({color, size}) => <Icon name="magnify" color={color} size={size} />,
-        }}
-      />
+      {userData?.role === UserRoles.PRE_RELEASE ? (
+        <Tab.Screen
+          name={ROUTE_NAMES.search}
+          component={SearchScreen}
+          options={{
+            tabBarLabel: 'Buscar',
+            tabBarIcon: ({color, size}) => <Icon name="magnify" color={color} size={size} />,
+          }}
+        />
+      ) : null}
+
       <Tab.Screen
         name={ROUTE_NAMES.profile}
         component={ProfileScreen}

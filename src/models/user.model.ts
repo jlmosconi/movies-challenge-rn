@@ -1,10 +1,20 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
+export const enum UserRoles {
+  ADMIN = 'admin',
+  USER = 'user',
+  PRE_RELEASE = 'pre-release',
+}
+
+export type UserRoleType = `${UserRoles}`;
 export interface User {
   uid: string;
   email: string;
   displayName: string;
   photoURL: string;
+  role: UserRoleType;
 }
 
-export interface ApiUser extends FirebaseAuthTypes.User {}
+export interface ApiUser extends FirebaseAuthTypes.User {
+  role: UserRoleType;
+}
