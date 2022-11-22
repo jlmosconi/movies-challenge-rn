@@ -4,7 +4,7 @@ import {Action} from '@reduxjs/toolkit';
 import {localStorageService, userService} from '@services';
 import {combineEpics, Epic} from 'redux-observable';
 import {from, tap} from 'rxjs';
-import {filter, first, ignoreElements, map, switchMap} from 'rxjs/operators';
+import {delay, filter, first, ignoreElements, map, switchMap} from 'rxjs/operators';
 import {clearUserData, getUserInRealtime, setUserData} from './user.actions';
 
 const setUserDataEpic: Epic<Action> = action$ =>
@@ -17,9 +17,10 @@ const setUserDataEpic: Epic<Action> = action$ =>
 const getUserInRealtimeEpic: Epic<Action> = action$ =>
   action$.pipe(
     filter(getUserInRealtime.match),
+    delay(500),
     filter(() => !userService.getUserUnsubscribe()),
     switchMap(() => localStorageService.getItem<User>(STORAGE.USER)),
-    filter(user => !!user?.uid),
+    filter(user => !!user),
     switchMap(user => userService.getUserInRealTime(user.uid)),
     map(user => setUserData(user)),
   );
