@@ -2,7 +2,7 @@ import {Action} from '@reduxjs/toolkit';
 import {moviesService} from '@services';
 import {combineEpics, Epic} from 'redux-observable';
 import {of} from 'rxjs';
-import {catchError, debounceTime, distinctUntilChanged, filter, first, ignoreElements, map, switchMap, tap} from 'rxjs/operators';
+import {catchError, debounceTime, distinctUntilChanged, filter, first, ignoreElements, map, switchMap} from 'rxjs/operators';
 import {
   getMovieCast,
   getMovieCastFailure,

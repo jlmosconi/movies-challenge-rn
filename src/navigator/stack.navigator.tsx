@@ -2,14 +2,15 @@ import {ROUTE_NAMES, COLORS} from '@constants';
 import {ActiveLoginGuard} from '@guards';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginBasedView} from '@routes';
-import {LoginScreen} from '@screens/Auth/Login/login.screen';
 import {MovieDetailsScreen} from '@screens/MovieDetails/movie-details.screen';
-import {FC} from 'react';
+import {FC, lazy} from 'react';
 import {TabNavigator} from './tab.navigator';
 import {HeaderBackButton} from '@react-navigation/elements';
 import {navigateService} from '@services';
 
 const Stack = createNativeStackNavigator();
+
+const LoginScreen = lazy(() => import('@screens/Auth/Login/login.screen'));
 
 export const StackNavigator: FC = () => {
   return (

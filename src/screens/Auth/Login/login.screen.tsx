@@ -7,7 +7,7 @@ import {FC} from 'react';
 import {Dimensions, SafeAreaView, StyleSheet, View} from 'react-native';
 import {LoginForm} from './components/login-form.component';
 
-export const LoginScreen: FC = () => {
+const LoginScreen: FC = () => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(state => state.auth.loading);
 
@@ -29,6 +29,8 @@ export const LoginScreen: FC = () => {
     </SafeAreaView>
   );
 };
+
+export default LoginScreen;
 
 const style = StyleSheet.create({
   container: {
