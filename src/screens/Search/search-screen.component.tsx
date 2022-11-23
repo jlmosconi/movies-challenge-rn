@@ -9,7 +9,7 @@ import {SearchResult} from './components/SearchResult/search-result.component';
 export const SearchScreen: FC = () => {
   return (
     <SafeAreaView edges={['top']} style={styles.bg}>
-      <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} needsOffscreenAlphaCompositing={true} />}>
+      <ScrollView nestedScrollEnabled={true} refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />}>
         <View style={styles.container}>
           <AppText style={styles.title} textType="bold">
             Buscar
