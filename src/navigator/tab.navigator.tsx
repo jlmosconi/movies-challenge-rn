@@ -34,6 +34,7 @@ export const TabNavigator: FC = () => {
         name={ROUTE_NAMES.homeScreen}
         component={HomeScreen}
         options={{
+          title: '',
           tabBarLabel: 'Home',
           tabBarIcon: ({focused, color, size}) => <Icon name={focused ? 'home' : 'home-outline'} color={color} size={size} />,
         }}
