@@ -14,8 +14,8 @@ export const ProfileScreen: FC = () => {
     <SafeAreaView edges={['top']} style={styles.bg}>
       <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />}>
         <View style={styles.container}>
-          <Button title="Logout" onPress={() => dispatch(logout())} />
           <Button title="Ir a Generos" onPress={() => navigateService.navigate(ROUTE_NAMES.genres)} />
+          <Button title="Logout" onPress={() => dispatch(logout())} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
+    marginTop: 50,
     paddingHorizontal: 10,
   },
 });

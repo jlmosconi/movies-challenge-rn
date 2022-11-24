@@ -1,4 +1,5 @@
-import {AppText, InputErrorMessage} from '@components';
+import {AppText} from '../../Text/text.component';
+import {InputErrorMessage} from '../InputErrorMessage/input-error-message.component';
 import {COLORS, GENERIC_ERRORS} from '@constants';
 import {InputValidator} from '@models';
 import {FC, useRef, useState} from 'react';

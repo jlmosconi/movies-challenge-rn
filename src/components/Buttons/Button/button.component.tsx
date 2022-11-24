@@ -1,4 +1,4 @@
-import {AppText} from '@components';
+import {AppText} from '../../Text/text.component';
 import {COLORS} from '@constants';
 import {FC} from 'react';
 import {ActivityIndicator, Pressable, StyleSheet} from 'react-native';

@@ -1,9 +1,9 @@
-import {AppText} from '@components';
 import {COLORS, GENERIC_ERRORS} from '@constants';
 import {GenericErrors, InputValidator} from '@models';
 import {FC} from 'react';
 import {FieldError} from 'react-hook-form';
 import {StyleSheet} from 'react-native';
+import {AppText} from '../../Text/text.component';
 
 interface ErrorMessage {
   tipo: InputValidator;
