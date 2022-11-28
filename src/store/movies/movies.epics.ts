@@ -2,8 +2,20 @@ import {Action} from '@reduxjs/toolkit';
 import {moviesService} from '@services';
 import {combineEpics, Epic} from 'redux-observable';
 import {of} from 'rxjs';
-import {catchError, debounceTime, distinctUntilChanged, filter, first, ignoreElements, map, switchMap} from 'rxjs/operators';
 import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  first,
+  ignoreElements,
+  map,
+  switchMap,
+  take,
+  takeUntil,
+} from 'rxjs/operators';
+import {
+  clearSearchMovies,
   getMovieCast,
   getMovieCastFailure,
   getMovieCastSuccess,
@@ -144,6 +156,7 @@ const searchMoviesEpic: Epic<Action> = action$ =>
     switchMap(({payload: {query}}) =>
       moviesService.searchMovies(query).pipe(
         first(),
+        takeUntil(action$.pipe(filter(clearSearchMovies.match), take(1))),
         map(searchMoviesSuccess),
         catchError(() => of(searchMoviesFailure())),
       ),
@@ -152,6 +165,7 @@ const searchMoviesEpic: Epic<Action> = action$ =>
 
 const searchMoviesSuccessEpic: Epic<Action> = action$ => action$.pipe(filter(searchMoviesSuccess.match), ignoreElements());
 const searchMoviesFailureEpic: Epic<Action> = action$ => action$.pipe(filter(searchMoviesFailure.match), ignoreElements());
+const clearSearchMoviesEpic: Epic<Action> = action$ => action$.pipe(filter(clearSearchMovies.match), ignoreElements());
 
 export const moviesEpics = combineEpics(
   getUpcomingMoviesEpic,
@@ -178,4 +192,5 @@ export const moviesEpics = combineEpics(
   searchMoviesEpic,
   searchMoviesSuccessEpic,
   searchMoviesFailureEpic,
+  clearSearchMoviesEpic,
 );

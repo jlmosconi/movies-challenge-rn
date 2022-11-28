@@ -19,6 +19,7 @@ interface InitMovieCastState {
 interface InitSearchMoviesState {
   loading: boolean;
   movies: Movie[] | null;
+  searched: boolean;
 }
 
 const initMoviesState = {
@@ -39,6 +40,7 @@ const initMovieCastState = {
 const initSearchMoviesState = {
   movies: null,
   loading: false,
+  searched: false,
 };
 
 export interface MoviesState {

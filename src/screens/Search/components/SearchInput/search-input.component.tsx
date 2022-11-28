@@ -1,21 +1,30 @@
 import {COLORS} from '@constants';
-import {useAppDispatch} from '@hooks';
-import {searchMovies} from '@store/movies/movies.actions';
+import {useAppDispatch, useAppSelector} from '@hooks';
+import {clearSearchMovies, searchMovies} from '@store/movies/movies.actions';
 import {FC, useEffect, useRef, useState} from 'react';
-import {Pressable, StyleSheet, TextInput, View} from 'react-native';
+import {Pressable, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const SearchInput: FC = () => {
   const dispatch = useAppDispatch();
+  const {searched} = useAppSelector(state => state.movies.searchMovies);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const textInput = useRef<TextInput>(null);
-  const [value, setValue] = useState<string>('');
+  const [query, setQuery] = useState<string>('');
 
   useEffect(() => {
-    if (value) {
-      dispatch(searchMovies({query: value}));
+    if (query) {
+      dispatch(searchMovies({query}));
+    } else if (!query && searched) {
+      dispatch(clearSearchMovies());
     }
-  }, [value, dispatch]);
+  }, [query, dispatch, searched]);
+
+  const clearInput = () => {
+    setQuery('');
+    textInput.current?.clear();
+    dispatch(clearSearchMovies());
+  };
 
   return (
     <View style={style.inputWrapper}>
@@ -31,16 +40,22 @@ export const SearchInput: FC = () => {
         <TextInput
           ref={textInput}
           style={style.input}
-          defaultValue={value}
+          defaultValue={query}
           placeholder={'Buscar...'}
           placeholderTextColor={COLORS.gray}
-          onChangeText={setValue}
+          onChangeText={setQuery}
           autoCorrect={false}
           autoCapitalize="none"
           autoComplete="off"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
+
+        {query ? (
+          <TouchableOpacity onPress={clearInput}>
+            <Icon name="close-circle" style={style.trailingIcon} />
+          </TouchableOpacity>
+        ) : null}
       </Pressable>
     </View>
   );
@@ -75,7 +90,8 @@ const style = StyleSheet.create({
     marginRight: 10,
   },
   trailingIcon: {
-    color: COLORS.medium,
-    fontSize: 22,
+    color: COLORS.gray,
+    opacity: 0.6,
+    fontSize: 18,
   },
 });

@@ -1,5 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
+  clearSearchMovies,
   getMovieCast,
   getMovieCastFailure,
   getMovieCastSuccess,
@@ -111,9 +112,16 @@ export const moviesReducer = createReducer(MoviesEmptyState, builder => {
   });
   builder.addCase(searchMoviesSuccess, (state, {payload: movies}) => {
     state.searchMovies.loading = false;
+    state.searchMovies.searched = true;
     state.searchMovies.movies = movies;
   });
   builder.addCase(searchMoviesFailure, state => {
     state.searchMovies.loading = false;
+    state.searchMovies.searched = false;
+  });
+  builder.addCase(clearSearchMovies, state => {
+    state.searchMovies.loading = false;
+    state.searchMovies.searched = false;
+    state.searchMovies.movies = [];
   });
 });

@@ -5,7 +5,7 @@ import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {SearchResultCard} from '../SearchResultCard/search-result-card.component';
 
 export const SearchResult: FC = () => {
-  const {movies, loading} = useAppSelector(state => state.movies.searchMovies);
+  const {movies, loading, searched} = useAppSelector(state => state.movies.searchMovies);
 
   if (loading) {
     return (
@@ -15,7 +15,7 @@ export const SearchResult: FC = () => {
     );
   }
 
-  if (movies && movies.length === 0) {
+  if (searched && movies && movies.length === 0) {
     return <AppText style={styles.notResults}>No se encontraron resultados.</AppText>;
   }
 
