@@ -1,7 +1,7 @@
 import {Button} from '@components';
 import {COLORS, ROUTE_NAMES} from '@constants';
 import {useAppDispatch} from '@hooks';
-import {navigateService} from '@services';
+// import {navigateService} from '@services';
 import {logout} from '@store/auth/auth.actions';
 import {FC} from 'react';
 import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
@@ -14,7 +14,7 @@ export const ProfileScreen: FC = () => {
     <SafeAreaView edges={['top']} style={styles.bg}>
       <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />}>
         <View style={styles.container}>
-          <Button title="Ir a Generos" onPress={() => navigateService.navigate(ROUTE_NAMES.genres)} />
+          {/* <Button title="Ir a Generos" onPress={() => navigateService.navigate(ROUTE_NAMES.genres)} /> */}
           <Button title="Logout" onPress={() => dispatch(logout())} />
         </View>
       </ScrollView>

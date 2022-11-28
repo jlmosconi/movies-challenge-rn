@@ -6,6 +6,7 @@
     "paths": {
       "@assets/*": ["assets/*"],
       "@navigator/*": ["src/navigator/*"],
+      "@rbac": ["src/rbac/index"],
       "@adapters": ["src/adapters/index"],
       "@components": ["src/components/index"],
       "@constants": ["src/constants/index"],

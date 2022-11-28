@@ -1,5 +1,6 @@
 import {COLORS} from '@constants';
 import {useAppDispatch} from '@hooks';
+import {IsPreRelease} from '@rbac';
 import {getUserInRealtime} from '@store/user/user.actions';
 import {FC, useEffect} from 'react';
 import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
@@ -18,7 +19,7 @@ export const HomeScreen: FC = () => {
     <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />} style={styles.bg}>
       <UpcomingMovies />
       <View style={styles.container}>
-        <NowPlayingMovies />
+        {IsPreRelease() ? <NowPlayingMovies /> : null}
         <PopularMovies />
         <TopRatedMovies />
       </View>

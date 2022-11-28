@@ -7,12 +7,12 @@ const genresList: AppGenre[] = [
   {
     id: 28,
     name: 'Acción',
-    icon: 'sword-cross',
+    icon: 'pistol',
   },
   {
     id: 12,
     name: 'Aventura',
-    icon: 'treasure-chest',
+    icon: 'binoculars',
   },
   {
     id: 16,
@@ -47,7 +47,7 @@ const genresList: AppGenre[] = [
   {
     id: 14,
     name: 'Fantasía',
-    icon: 'castle',
+    icon: 'auto-fix',
   },
   {
     id: 36,
@@ -57,7 +57,7 @@ const genresList: AppGenre[] = [
   {
     id: 27,
     name: 'Terror',
-    icon: 'halloween',
+    icon: 'skull',
   },
   {
     id: 10402,
@@ -82,7 +82,7 @@ const genresList: AppGenre[] = [
   {
     id: 53,
     name: 'Suspenso',
-    icon: 'movie-open-outline',
+    icon: 'knife',
   },
   {
     id: 10752,
@@ -92,7 +92,7 @@ const genresList: AppGenre[] = [
   {
     id: 37,
     name: 'Western',
-    icon: 'account-cowboy-hat',
+    icon: 'cactus',
   },
 ];
 

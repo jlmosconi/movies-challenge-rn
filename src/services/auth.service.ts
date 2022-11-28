@@ -1,5 +1,5 @@
 import {UserAdapter} from '@adapters';
-import {LoginProps, User} from '@models';
+import {ApiUser, LoginProps, User} from '@models';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 class AuthService {
@@ -12,7 +12,7 @@ class AuthService {
   }
 
   public login = async ({email, password}: LoginProps): Promise<User> => {
-    return UserAdapter((await auth().signInWithEmailAndPassword(email, password)).user);
+    return UserAdapter((await auth().signInWithEmailAndPassword(email, password)).user as ApiUser);
   };
 
   public getCurrentUser = async (): Promise<FirebaseAuthTypes.User | null> => {

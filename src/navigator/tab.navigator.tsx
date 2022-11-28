@@ -1,6 +1,5 @@
 import {COLORS, ROUTE_NAMES} from '@constants';
-import {useAppSelector} from '@hooks';
-import {UserRoles} from '@models';
+import {IsPreRelease} from '@rbac';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {GenresScreen} from '@screens/Genres/genres-screen.component';
 import {HomeScreen} from '@screens/Home/home.screen';
@@ -12,7 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Tab = createBottomTabNavigator();
 
 export const TabNavigator: FC = () => {
-  const {userData} = useAppSelector(state => state.user);
+  // const {userData} = useAppSelector(state => state.user);
 
   return (
     <Tab.Navigator
@@ -39,7 +38,8 @@ export const TabNavigator: FC = () => {
           tabBarIcon: ({focused, color, size}) => <Icon name={focused ? 'home' : 'home-outline'} color={color} size={size} />,
         }}
       />
-      {userData?.role === UserRoles.PRE_RELEASE ? (
+      {/* {userData?.role === UserRoles.PRE_RELEASE ? ( */}
+      {IsPreRelease() ? (
         <Tab.Screen
           name={ROUTE_NAMES.genres}
           component={GenresScreen}
@@ -51,6 +51,8 @@ export const TabNavigator: FC = () => {
           }}
         />
       ) : null}
+
+      {/* ) : null} */}
 
       <Tab.Screen
         name={ROUTE_NAMES.search}
