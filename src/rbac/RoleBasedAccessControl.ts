@@ -1,5 +1,5 @@
 import {useAppSelector} from '@hooks';
-import {UserRoles} from '@models';
+import {UserRoles, UserRoleType} from '@models';
 
 export const IsPreRelease = (): boolean => {
   const {userData} = useAppSelector(state => state.user);
@@ -7,7 +7,7 @@ export const IsPreRelease = (): boolean => {
   return userData?.role === UserRoles.PRE_RELEASE;
 };
 
-export const CheckPermission = (role: UserRoles): boolean => {
+export const CheckPermission = (role: UserRoleType): boolean => {
   const {userData} = useAppSelector(state => state.user);
 
   return userData?.role === role;

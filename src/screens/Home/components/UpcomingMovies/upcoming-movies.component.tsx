@@ -35,7 +35,7 @@ export const UpcomingMovies: FC = () => {
         itemWidth={screenWidth}
         data={movies}
         renderItem={({item}: {item: Movie}, parallaxProps: AdditionalParallaxProps | undefined) =>
-          UpcomingMoviesItem({item, parallaxProps, insets})
+          UpcomingMoviesItem({id: item.id, poster_path: item.poster_path as string, release_date: item.release_date, parallaxProps, insets})
         }
         hasParallaxImages={true}
       />

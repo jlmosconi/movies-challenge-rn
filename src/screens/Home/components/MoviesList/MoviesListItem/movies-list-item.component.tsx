@@ -1,38 +1,41 @@
-import {COLORS, ROUTE_NAMES} from '@constants';
-import {Movie} from '@models';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {COLORS, MOVIES_LIST, ROUTE_NAMES} from '@constants';
 import {navigateService} from '@services';
-import {FC} from 'react';
-import {Image, StyleSheet, TouchableOpacity} from 'react-native';
-import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import {FC, useState} from 'react';
+import {Image, ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
+const filmUri = Image.resolveAssetSource(require('@assets/images/film.png')).uri;
 
 interface MoviesListItemProps {
-  item: Movie;
-  itemWidth: number;
-  loading: boolean;
+  id: number;
+  poster_path: string | null;
 }
 
-const height = 140;
-const borderRadius = 5;
+export const MoviesListItem: FC<MoviesListItemProps> = ({id, poster_path}) => {
+  const [loadError, setLoadError] = useState<boolean>(false);
 
-export const MoviesListItem: FC<MoviesListItemProps> = ({item, itemWidth, loading}) => {
-  return loading ? (
-    <SkeletonPlaceholder backgroundColor={COLORS.skeletonBackgroundColor} highlightColor={COLORS.skeletonHighlightColor}>
-      <SkeletonPlaceholder.Item style={[styles.image, {width: itemWidth}]} width={itemWidth} height={height} borderRadius={borderRadius} />
-    </SkeletonPlaceholder>
-  ) : (
-    <TouchableOpacity onPress={() => navigateService.push(ROUTE_NAMES.movieDetails, {movieId: item.id}, item.id)}>
-      <Image
-        source={{uri: `https://image.tmdb.org/t/p/w370_and_h556_bestv2${item.poster_path}`}}
-        style={[styles.image, {width: itemWidth}]}
+  return (
+    <TouchableOpacity onPress={() => navigateService.push(ROUTE_NAMES.movieDetails, {movieId: id}, id)}>
+      <ImageBackground
+        style={styles.imageBackground}
+        borderRadius={MOVIES_LIST.itemBorderRadius}
+        resizeMode={loadError ? 'center' : 'cover'}
+        imageStyle={loadError ? styles.imageOverlayError : null}
+        onError={() => setLoadError(true)}
+        source={{
+          uri: loadError ? filmUri : `https://image.tmdb.org/t/p/w500${poster_path}`,
+        }}
       />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  image: {
-    height,
-    borderRadius,
+  imageBackground: {
+    height: MOVIES_LIST.itemHeight,
+    width: MOVIES_LIST.itemWidth,
+    marginRight: MOVIES_LIST.itemMarginRight,
+  },
+  imageOverlayError: {
+    opacity: 0.7,
+    backgroundColor: COLORS.white,
   },
 });

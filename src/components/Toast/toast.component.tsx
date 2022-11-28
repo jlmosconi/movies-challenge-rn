@@ -3,28 +3,26 @@ import {FC} from 'react';
 import {StyleSheet} from 'react-native';
 import Toast, {BaseToast, ErrorToast} from 'react-native-toast-message';
 
-export const ToastCustom: FC = () => {
-  const toastConfig = {
-    success: (props: any) => (
-      <BaseToast
-        {...props}
-        style={[style.noBorder, {backgroundColor: COLORS.success}]}
-        text1Style={style.text1Style}
-        text2Style={style.text2Style}
-      />
-    ),
-    error: (props: any) => (
-      <ErrorToast
-        {...props}
-        style={[style.noBorder, {backgroundColor: COLORS.danger}]}
-        text1Style={style.text1Style}
-        text2Style={style.text2Style}
-      />
-    ),
-  };
-
-  return <Toast config={toastConfig} />;
+const toastConfig = {
+  success: (props: any) => (
+    <BaseToast
+      {...props}
+      style={[style.noBorder, {backgroundColor: COLORS.success}]}
+      text1Style={style.text1Style}
+      text2Style={style.text2Style}
+    />
+  ),
+  error: (props: any) => (
+    <ErrorToast
+      {...props}
+      style={[style.noBorder, {backgroundColor: COLORS.danger}]}
+      text1Style={style.text1Style}
+      text2Style={style.text2Style}
+    />
+  ),
 };
+
+export const ToastCustom: FC = () => <Toast config={toastConfig} />;
 
 const style = StyleSheet.create({
   success: {

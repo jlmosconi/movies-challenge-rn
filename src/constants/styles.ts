@@ -23,4 +23,11 @@ export const FONTS = {
   bold: 'Inter-Bold',
 };
 
+export const MOVIES_LIST = {
+  itemHeight: 140,
+  itemWidth: 100,
+  itemMarginRight: 8,
+  itemBorderRadius: 5,
+};
+
 export const safeAreaSpace = Platform.OS === 'ios' ? 10 : 60;

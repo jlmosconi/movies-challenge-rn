@@ -1,6 +1,5 @@
 import {AppText} from '@components';
 import {ROUTE_NAMES} from '@constants';
-import {Movie} from '@models';
 import {navigateService} from '@services';
 import {FC} from 'react';
 import {Dimensions, Platform, Pressable, StyleSheet, View} from 'react-native';
@@ -12,16 +11,18 @@ const {width: screenWidth} = Dimensions.get('window');
 const height = screenWidth * 1.45;
 
 interface UpcomingMoviesItemComponentProps {
-  item: Movie;
+  id: number;
+  release_date: string;
+  poster_path: string;
   parallaxProps: AdditionalParallaxProps | undefined;
   insets: EdgeInsets;
 }
 
-export const UpcomingMoviesItem: FC<UpcomingMoviesItemComponentProps> = ({item, parallaxProps, insets}) => {
+export const UpcomingMoviesItem: FC<UpcomingMoviesItemComponentProps> = ({id, release_date, poster_path, parallaxProps, insets}) => {
   return (
-    <Pressable style={styles.item} onPress={() => navigateService.navigate(ROUTE_NAMES.movieDetails, {movieId: item.id})}>
+    <Pressable style={styles.item} onPress={() => navigateService.navigate(ROUTE_NAMES.movieDetails, {movieId: id})}>
       <ParallaxImage
-        source={{uri: 'https://www.themoviedb.org/t/p/original' + item.poster_path || ''}}
+        source={{uri: 'https://www.themoviedb.org/t/p/original' + poster_path || ''}}
         containerStyle={styles.imageContainer}
         style={styles.image}
         parallaxFactor={0.05}
@@ -32,7 +33,7 @@ export const UpcomingMoviesItem: FC<UpcomingMoviesItemComponentProps> = ({item, 
       <View style={[styles.releaseTextWrapper, {marginTop: insets.top}]}>
         <AppText style={styles.releaseText}>Fecha de lanzamiento</AppText>
         <AppText style={styles.releaseText} textType="bold">
-          {item.release_date}
+          {release_date}
         </AppText>
       </View>
       <LinearGradient
