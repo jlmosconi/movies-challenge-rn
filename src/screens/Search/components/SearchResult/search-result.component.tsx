@@ -1,7 +1,7 @@
 import {AppText} from '@components';
 import {useAppSelector} from '@hooks';
 import {FC} from 'react';
-import {StyleSheet, ActivityIndicator, FlatList, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {SearchResultCard} from '../SearchResultCard/search-result-card.component';
 
 export const SearchResult: FC = () => {
@@ -19,7 +19,7 @@ export const SearchResult: FC = () => {
     return <AppText style={styles.notResults}>No se encontraron resultados.</AppText>;
   }
 
-  return <FlatList data={movies} keyExtractor={item => item.id.toString()} renderItem={({item}) => <SearchResultCard movie={item} />} />;
+  return <>{movies && movies.map(movie => <SearchResultCard key={movie.id} movie={movie} />)}</>;
 };
 
 const styles = StyleSheet.create({

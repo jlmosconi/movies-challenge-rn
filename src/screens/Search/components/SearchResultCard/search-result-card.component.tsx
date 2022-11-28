@@ -1,25 +1,36 @@
 import {AppText} from '@components';
-import {COLORS, ROUTE_NAMES} from '@constants';
+import {COLORS, MOVIES_LIST, ROUTE_NAMES} from '@constants';
 import {Movie} from '@models';
 import {navigateService} from '@services';
-import {FC} from 'react';
-import {Dimensions, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
+import {FC, useState} from 'react';
+import {Dimensions, StyleSheet, TouchableOpacity, View, Image, ImageBackground} from 'react-native';
+const filmUri = Image.resolveAssetSource(require('@assets/images/film.png')).uri;
 
 export const SearchResultCard: FC<{movie: Movie}> = ({movie}) => {
+  const [loadError, setLoadError] = useState<boolean>(false);
   return (
-    <TouchableOpacity onPress={() => navigateService.push(ROUTE_NAMES.movieDetails, {movieId: movie.id}, movie.id)} style={style.card}>
-      <Image source={{uri: `https://image.tmdb.org/t/p/w370_and_h556_bestv2${movie.poster_path}`}} style={style.image} />
-      <View style={style.info}>
-        <AppText style={style.title} textType="bold">
+    <TouchableOpacity onPress={() => navigateService.push(ROUTE_NAMES.movieDetails, {movieId: movie.id}, movie.id)} style={styles.card}>
+      <ImageBackground
+        style={styles.imageBackground}
+        borderRadius={MOVIES_LIST.itemBorderRadius}
+        resizeMode={loadError ? 'center' : 'cover'}
+        imageStyle={loadError ? styles.imageOverlayError : null}
+        onError={() => setLoadError(true)}
+        source={{
+          uri: loadError ? filmUri : `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+        }}
+      />
+      <View style={styles.info}>
+        <AppText style={styles.title} textType="bold">
           {movie.title}
         </AppText>
-        <AppText style={style.originalTitle} textType="bold">
+        <AppText style={styles.originalTitle} textType="bold">
           {movie.original_title}
         </AppText>
-        <AppText style={style.releaseDate} textType="bold">
+        <AppText style={styles.releaseDate} textType="bold">
           {movie.release_date}
         </AppText>
-        <AppText style={style.year} numberOfLines={4} ellipsizeMode={'tail'}>
+        <AppText style={styles.year} numberOfLines={4} ellipsizeMode={'tail'}>
           {movie.overview}
         </AppText>
       </View>
@@ -27,7 +38,7 @@ export const SearchResultCard: FC<{movie: Movie}> = ({movie}) => {
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   card: {
     flex: 1,
     flexDirection: 'row',
@@ -37,10 +48,13 @@ const style = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
   },
-  image: {
-    width: 100,
-    height: 150,
-    borderRadius: 5,
+  imageBackground: {
+    height: MOVIES_LIST.itemHeight + 10,
+    width: MOVIES_LIST.itemWidth,
+  },
+  imageOverlayError: {
+    opacity: 0.7,
+    backgroundColor: COLORS.white,
   },
   info: {
     marginLeft: 10,

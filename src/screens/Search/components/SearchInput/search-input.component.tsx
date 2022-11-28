@@ -49,7 +49,8 @@ export const SearchInput: FC = () => {
 const style = StyleSheet.create({
   inputWrapper: {
     width: '100%',
-    marginBottom: 16,
+    paddingVertical: 16,
+    backgroundColor: COLORS.dark,
   },
   label: {
     marginVertical: 5,

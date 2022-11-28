@@ -50,7 +50,7 @@ class MoviesService {
   public getSimilarMovies = (id: number): Observable<Movie[]> => {
     return httpClientService
       .get<ApiMovieResponse>(`${this.tmdbUrl}${ENDPOINTS.similarMovies(id)}`, this.getQueryParamsList())
-      .pipe(map(response => this.adaptMovies(response.results)));
+      .pipe(map(response => this.adaptMovies(response.results).filter(movie => movie.id !== id)));
   };
 
   public getCast = (id: number): Observable<Cast[]> => {

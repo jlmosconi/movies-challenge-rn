@@ -1,7 +1,7 @@
 import {AppText} from '@components';
 import {COLORS} from '@constants';
 import {FC} from 'react';
-import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SearchInput} from './components/SearchInput/search-input.component';
 import {SearchResult} from './components/SearchResult/search-result.component';
@@ -9,18 +9,15 @@ import {SearchResult} from './components/SearchResult/search-result.component';
 export const SearchScreen: FC = () => {
   return (
     <SafeAreaView edges={['top']} style={styles.bg}>
-      <ScrollView nestedScrollEnabled={true} refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />}>
-        <View style={styles.container}>
-          <AppText style={styles.title} textType="bold">
-            Buscar
-          </AppText>
-          <AppText style={styles.subtitle} textType="bold">
-            Buscar películas por nombre, por género, por año, por director, por actores, etc.
-          </AppText>
-
-          <SearchInput />
-          <SearchResult />
-        </View>
+      <ScrollView stickyHeaderIndices={[2]} showsVerticalScrollIndicator={false}>
+        <AppText style={styles.title} textType="bold">
+          Buscar
+        </AppText>
+        <AppText style={styles.subtitle} textType="bold">
+          Buscar películas por nombre, por género, por año, por director, por actores, etc.
+        </AppText>
+        <SearchInput />
+        <SearchResult />
       </ScrollView>
     </SafeAreaView>
   );
@@ -30,6 +27,7 @@ const styles = StyleSheet.create({
   bg: {
     backgroundColor: COLORS.dark,
     flex: 1,
+    paddingHorizontal: 10,
   },
   container: {
     paddingHorizontal: 10,
@@ -42,6 +40,5 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 13,
     lineHeight: 20,
-    marginBottom: 20,
   },
 });
