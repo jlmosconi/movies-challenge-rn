@@ -1,6 +1,10 @@
-import {FC} from 'react';
-import {Dimensions, ImageBackground, StyleSheet, View} from 'react-native';
+import {LazyImage} from '@components';
+import {IMAGE_BASE_URL} from '@constants';
+import {PosterSize} from '@models';
+import {FC, useState} from 'react';
+import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+const filmUri = Image.resolveAssetSource(require('@assets/images/film.png')).uri;
 
 interface MovieDetailsBackdropProps {
   backdropPath: string;
@@ -10,15 +14,14 @@ const {width: screenWidth} = Dimensions.get('window');
 const height = screenWidth * 0.7;
 
 export const MovieDetailsBackdrop: FC<MovieDetailsBackdropProps> = ({backdropPath}) => {
+  const [loadError, setLoadError] = useState<boolean>(false);
   return (
     <View style={styles.backdropContainer}>
-      <ImageBackground
-        style={[styles.image, {height}]}
-        source={{
-          uri: `https://image.tmdb.org/t/p/w1000_and_h563_face${backdropPath}`,
-        }}
-        resizeMode="cover"
-        imageStyle={styles.imageOverlay}
+      <LazyImage
+        source={{uri: loadError ? filmUri : `${IMAGE_BASE_URL}${PosterSize.w1280}${backdropPath}`}}
+        style={[{height}]}
+        resizeMode={loadError ? 'center' : 'cover'}
+        onError={() => setLoadError(true)}
       />
       <LinearGradient colors={['rgba(18, 18, 18, 0)', 'rgba(18, 18, 18, .6)', 'rgba(18, 18, 18, 1)']} style={styles.linearGradient} />
     </View>
@@ -28,9 +31,6 @@ export const MovieDetailsBackdrop: FC<MovieDetailsBackdropProps> = ({backdropPat
 const styles = StyleSheet.create({
   backdropContainer: {
     position: 'relative',
-  },
-  image: {
-    flex: 1,
   },
   imageOverlay: {
     opacity: 0.5,

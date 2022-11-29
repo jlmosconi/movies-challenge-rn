@@ -1,25 +1,15 @@
 import {AppText} from '@components';
 import {COLORS, MOVIES_LIST, ROUTE_NAMES} from '@constants';
 import {Movie} from '@models';
+import {MoviesPoster} from '@screens/Home/components/MoviesList/MoviesPoster/movies-poster.component';
 import {navigateService} from '@services';
-import {FC, useState} from 'react';
-import {Dimensions, StyleSheet, TouchableOpacity, View, Image, ImageBackground} from 'react-native';
-const filmUri = Image.resolveAssetSource(require('@assets/images/film.png')).uri;
+import {FC} from 'react';
+import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
 
 export const SearchResultCard: FC<{movie: Movie}> = ({movie}) => {
-  const [loadError, setLoadError] = useState<boolean>(false);
   return (
     <TouchableOpacity onPress={() => navigateService.push(ROUTE_NAMES.movieDetails, {movieId: movie.id}, movie.id)} style={styles.card}>
-      <ImageBackground
-        style={styles.imageBackground}
-        borderRadius={MOVIES_LIST.itemBorderRadius}
-        resizeMode={loadError ? 'center' : 'cover'}
-        imageStyle={loadError ? styles.imageOverlayError : null}
-        onError={() => setLoadError(true)}
-        source={{
-          uri: loadError ? filmUri : `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-        }}
-      />
+      <MoviesPoster poster={movie.poster_path} style={styles.imageBackground} progresive={true} />
       <View style={styles.info}>
         <AppText style={styles.title} textType="bold">
           {movie.title}
@@ -51,6 +41,7 @@ const styles = StyleSheet.create({
   imageBackground: {
     height: MOVIES_LIST.itemHeight + 10,
     width: MOVIES_LIST.itemWidth,
+    borderRadius: MOVIES_LIST.itemBorderRadius,
   },
   imageOverlayError: {
     opacity: 0.7,

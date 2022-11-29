@@ -1,8 +1,9 @@
-import {AppText} from '@components';
-import {Cast} from '@models';
-import {useState} from 'react';
-import {FC} from 'react';
-import {StyleSheet, ImageBackground, View, Image} from 'react-native';
+import {AppText, LazyImage} from '@components';
+import {COLORS, IMAGE_BASE_URL} from '@constants';
+import {Cast, PosterSize} from '@models';
+import {FC, useState} from 'react';
+import {Image, StyleSheet, View} from 'react-native';
+
 const maleUri = Image.resolveAssetSource(require('@assets/images/male.png')).uri;
 const femaleUri = Image.resolveAssetSource(require('@assets/images/female.png')).uri;
 
@@ -14,17 +15,15 @@ export const MovieDetailsCastItem: FC<MovieDetailsCastItemProps> = ({cast}) => {
   const [loadError, setLoadError] = useState<boolean>(false);
 
   return (
-    <ImageBackground
-      style={styles.imageBackground}
-      borderRadius={5}
-      resizeMode={loadError ? 'center' : 'cover'}
-      imageStyle={loadError ? styles.imageOverlayError : styles.imageOverlay}
-      onError={() => {
-        setLoadError(true);
-      }}
-      source={{
-        uri: loadError ? (cast.gender === 1 ? maleUri : femaleUri) : `https://image.tmdb.org/t/p/w500${cast.profile_path}`,
-      }}>
+    <View style={styles.container}>
+      <LazyImage
+        progresive={true}
+        thumbnailSource={{uri: `${IMAGE_BASE_URL}${PosterSize.w45}${cast.profile_path}`}}
+        source={{uri: loadError ? (cast.gender === 1 ? maleUri : femaleUri) : `${IMAGE_BASE_URL}${PosterSize.w300}${cast.profile_path}`}}
+        style={styles.imageBackground}
+        resizeMode={loadError ? 'center' : 'cover'}
+        onError={() => setLoadError(true)}
+      />
       <View style={styles.textContainer}>
         <AppText textType="bold" style={styles.name}>
           {cast.name}
@@ -33,23 +32,28 @@ export const MovieDetailsCastItem: FC<MovieDetailsCastItemProps> = ({cast}) => {
           {cast.character}
         </AppText>
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  imageBackground: {
+  container: {
+    position: 'relative',
     height: 110,
     width: 80,
     marginRight: 8,
+    backgroundColor: COLORS.skeletonBackgroundColor,
+    borderRadius: 5,
+    overflow: 'hidden',
   },
-  imageOverlay: {
-    opacity: 0.5,
-    backgroundColor: '#000000',
-  },
-  imageOverlayError: {
-    opacity: 0.4,
-    backgroundColor: '#ffffff',
+  imageBackground: {
+    height: 110,
+    width: 80,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    borderRadius: 5,
+    zIndex: 1,
   },
   textContainer: {
     display: 'flex',
@@ -57,7 +61,9 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'column',
     justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     padding: 5,
+    zIndex: 2,
   },
   name: {
     fontSize: 11,

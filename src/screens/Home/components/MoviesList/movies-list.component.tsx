@@ -20,7 +20,7 @@ export const MoviesList: FC<MoviesListProps> = ({movies, loading}) => {
           data={movies}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          renderItem={({item}: {item: Movie}) => <MoviesListItem id={item.id} poster_path={item.poster_path} />}
+          renderItem={({item}: {item: Movie}) => <MoviesListItem id={item.id} poster={item.poster_path} />}
         />
       )}
     </View>

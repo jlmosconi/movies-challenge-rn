@@ -1,7 +1,7 @@
 import {AppText} from '@components';
+import {MoviesPoster} from '@screens/Home/components/MoviesList/MoviesPoster/movies-poster.component';
 import {FC} from 'react';
-import {Dimensions} from 'react-native';
-import {Image, StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 
 interface MoviesDetailsPosterInfoProps {
   title: string;
@@ -13,7 +13,7 @@ interface MoviesDetailsPosterInfoProps {
 export const MoviesDetailsPosterInfo: FC<MoviesDetailsPosterInfoProps> = ({posterPath, title, originalTitle, releaseDate}) => {
   return (
     <View style={styles.container}>
-      <Image source={{uri: `https://image.tmdb.org/t/p/w370_and_h556_bestv2${posterPath}`}} style={styles.image} />
+      <MoviesPoster poster={posterPath} style={styles.image} progresive={true} />
       <View>
         <AppText textType="bold" style={styles.title}>
           {title}
