@@ -9,8 +9,8 @@ export const SearchInput: FC = () => {
   const dispatch = useAppDispatch();
   const {searched} = useAppSelector(state => state.movies.searchMovies);
   const [isFocused, setIsFocused] = useState<boolean>(false);
-  const textInput = useRef<TextInput>(null);
   const [query, setQuery] = useState<string>('');
+  const textInput = useRef<TextInput>(null);
 
   useEffect(() => {
     if (query) {

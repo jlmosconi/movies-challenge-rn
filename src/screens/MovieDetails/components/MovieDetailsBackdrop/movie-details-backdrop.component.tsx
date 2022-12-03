@@ -15,7 +15,7 @@ export const MovieDetailsBackdrop: FC<MovieDetailsBackdropProps> = ({backdropPat
   return (
     <View style={styles.backdropContainer}>
       <MoviesPoster poster={backdropPath} progresive={true} posterSize={PosterSize.w1280} style={[{height}]} />
-      <LinearGradient colors={['rgba(18, 18, 18, .5)', 'rgba(18, 18, 18, .6)', 'rgba(18, 18, 18, 1)']} style={styles.linearGradient} />
+      <LinearGradient colors={['rgba(18, 18, 18, .4)', 'rgba(18, 18, 18, .5)', 'rgba(18, 18, 18, 1)']} style={styles.linearGradient} />
     </View>
   );
 };
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: height,
+    height,
   },
 });
