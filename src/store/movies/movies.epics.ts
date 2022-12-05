@@ -13,6 +13,7 @@ import {
   switchMap,
   take,
   takeUntil,
+  tap,
 } from 'rxjs/operators';
 import {
   clearSearchMovies,
@@ -150,12 +151,16 @@ const getMovieCastFailureEpic: Epic<Action> = action$ => action$.pipe(filter(get
 const searchMoviesEpic: Epic<Action> = action$ =>
   action$.pipe(
     filter(searchMovies.match),
-    debounceTime(600), // Prevents multiple calls to the same action
-    distinctUntilChanged(),
-    filter(({payload: {query}}) => !!query),
-    switchMap(({payload: {query}}) =>
+    debounceTime(500), // Prevents multiple calls to the same action
+    map(({payload: {query}}) => query),
+    filter(query => !!query),
+    // distinctUntilChanged(),
+    switchMap(query =>
       moviesService.searchMovies(query).pipe(
         first(),
+        tap(() => {
+          console.log(query);
+        }),
         takeUntil(action$.pipe(filter(clearSearchMovies.match), take(1))),
         map(searchMoviesSuccess),
         catchError(() => of(searchMoviesFailure())),

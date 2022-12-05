@@ -14,6 +14,7 @@ export const SearchInput: FC = () => {
 
   useEffect(() => {
     if (query) {
+      console.log('query:', query, searched);
       dispatch(searchMovies({query}));
     } else if (!query && searched) {
       dispatch(clearSearchMovies());

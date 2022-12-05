@@ -33,6 +33,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["node"],
+    "typeRoots": ["src/types"],
     "skipLibCheck": true
   }
 }

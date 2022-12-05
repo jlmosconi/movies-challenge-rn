@@ -14,7 +14,9 @@ export const MovieDetailsSimilarMovies: FC<MovieDetailsSimilarMoviesProps> = ({m
   const {loading, movies} = useAppSelector(state => state.movies.similarMovies);
 
   useEffect(() => {
-    dispatch(getSimilarMovies({movieId}));
+    if (movieId) {
+      dispatch(getSimilarMovies({movieId}));
+    }
   }, [dispatch, movieId]);
 
   return (

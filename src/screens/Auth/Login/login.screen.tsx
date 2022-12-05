@@ -1,5 +1,6 @@
 import {AppText} from '@components';
 import {COLORS} from '@constants';
+import {APP_ENVIRONMENT} from '@env';
 import {useAppDispatch, useAppSelector} from '@hooks';
 import {LoginProps} from '@models';
 import {login} from '@store/auth/auth.actions';
@@ -19,7 +20,7 @@ const LoginScreen: FC = () => {
     <SafeAreaView>
       <View style={style.container}>
         <AppText style={style.title} textType="bold">
-          ANTERUX
+          ANTERUX {APP_ENVIRONMENT}
         </AppText>
         <AppText style={style.loginText} textType="bold">
           Ingresar

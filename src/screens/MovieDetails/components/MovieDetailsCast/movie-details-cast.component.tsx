@@ -15,7 +15,9 @@ export const MovieDetailsCast: FC<MovieDetailsCastProps> = ({movieId}) => {
   const {loading, cast} = useAppSelector(state => state.movies.movieCast);
 
   useEffect(() => {
-    dispatch(getMovieCast({movieId}));
+    if (movieId) {
+      dispatch(getMovieCast({movieId}));
+    }
   }, [dispatch, movieId]);
 
   return (
